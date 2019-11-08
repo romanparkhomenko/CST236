@@ -1,0 +1,31 @@
+/////////////////////// HOME PAGE
+.homepage.fluid-container {
+  background: white;
+  height: 100vh; overflow: scroll;
+  p.welcome {text-transform: capitalize;}
+  div.user-info {
+    position: relative;
+    details {
+      position: absolute;
+      z-index: 1;
+      background: white;
+      summary {
+        font-size: 1.2rem;
+        &:focus {outline: none; border: none;}
+      }
+      width: 100%;
+      padding: 1rem 2rem;
+      p {border-bottom: 0.5px solid $fog;}
+      &[open] {border: 1px solid $fog; summary {padding: 0 0 1rem;}}
+    }
+  }
+  div.intro-div {margin-top: 2rem;}
+  div.row.header-row {
+    padding: 1rem 0;
+    box-shadow: 5px 9px 14px rgba(0, 0, 0, 0.15);
+    .welcome {
+      h1 {text-transform: capitalize; padding: 0 1rem;}
+    }
+  }
+
+}
