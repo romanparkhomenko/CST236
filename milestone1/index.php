@@ -41,10 +41,16 @@ $username = $_SESSION['username'];
                 </details>
             </div>
         </div>
-        <div class="row justify-content-center align-items-start">
-            <div class="intro-div col-sm-9">
-                <h1>This is where we're going to buy stuff!</h1>
-            </div>
+        <div class="app-wrapper">
+            <script type="text/javascript">
+                var myApp = {
+                    user : <?php echo json_encode($username); ?>
+                };
+            </script>
+            <!--REACT APP-->
+            <div id="app"></div>
+
+            <script type="text/javascript" src="/milestone1/app/assets/bundle/main.bundle.js"></script>
         </div>
     </div>
 

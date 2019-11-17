@@ -215,4 +215,97 @@ div.error p {
   background: #dc3545;
 }
 
+.product-catalog {
+  margin-top: 2rem;
+}
+.product-catalog .filter-tools {
+  display: flex;
+  max-width: 75%;
+  margin: 1rem 0;
+}
+.product-catalog .filter-tools div.pagination {
+  flex: 1 0 auto;
+}
+.product-catalog .filter-tools div.search {
+  flex: 1 0 auto;
+}
+
+.ReactModalPortal {
+  position: relative;
+  z-index: 1000;
+}
+.ReactModalPortal .product-card {
+  width: 100%;
+  max-width: none;
+  padding: 1rem;
+  box-shadow: none;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+.ReactModalPortal .product-card h4 {
+  font-size: 1.1rem;
+  text-align: center;
+  margin: 0.5rem auto;
+}
+.ReactModalPortal .product-card h2 {
+  font-size: 1.2rem;
+  color: darkgreen;
+  font-weight: bold;
+  text-align: center;
+  margin: 0.5rem auto;
+}
+.ReactModalPortal .product-card p.description {
+  font-size: 0.9rem;
+  color: #484949;
+  margin: 0;
+}
+.ReactModalPortal .product-card p.category {
+  font-size: 0.9rem;
+  color: #484949;
+  text-transform: uppercase;
+  margin: 1rem 0 0.5rem;
+  text-align: center;
+}
+
+.product-list {
+  display: flex;
+  flex-flow: row wrap;
+}
+.product-list .product-card {
+  cursor: pointer;
+  width: 18%;
+  max-width: 300px;
+  margin: 10px;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 1rem;
+}
+.product-list .product-card h4 {
+  font-size: 1.1rem;
+  text-align: center;
+  margin: 0.5rem auto;
+}
+.product-list .product-card h2 {
+  font-size: 1.2rem;
+  color: darkgreen;
+  font-weight: bold;
+  text-align: center;
+  margin: 0.5rem auto;
+}
+.product-list .product-card p.description {
+  font-size: 0.9rem;
+  color: #484949;
+  margin: 0;
+}
+.product-list .product-card p.category {
+  font-size: 0.9rem;
+  color: #484949;
+  text-transform: uppercase;
+  margin: 1rem 0 0.5rem;
+  text-align: center;
+}
+
 /*# sourceMappingURL=main.css.map */
