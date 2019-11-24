@@ -1,0 +1,170 @@
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Lato",sans-serif; }
+  * p {
+    line-height: 1.4; }
+
+div#app {
+  display: grid;
+  grid-template-columns: minmax(-webkit-min-content, 18%) minmax(-webkit-min-content, 82%);
+  grid-template-columns: minmax(min-content, 18%) minmax(min-content, 82%);
+  font-family: 'Lato', sans-serif;
+  font-variant-ligatures: common-ligatures;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased; }
+
+main.dashboard {
+  padding: 1rem; }
+
+.product-catalog {
+  margin-top: 2rem; }
+  .product-catalog .filter-tools {
+    display: -webkit-box;
+    display: flex;
+    max-width: 75%;
+    margin: 1rem 0; }
+    .product-catalog .filter-tools div.pagination {
+      -webkit-box-flex: 1;
+              flex: 1 0 auto; }
+    .product-catalog .filter-tools div.search {
+      -webkit-box-flex: 1;
+              flex: 1 0 auto; }
+
+.ReactModalPortal {
+  position: relative;
+  z-index: 1000; }
+  .ReactModalPortal .product-card {
+    width: 100%;
+    max-width: none;
+    padding: 1rem;
+    box-shadow: none;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-flow: column;
+    -webkit-box-align: center;
+            align-items: center; }
+    .ReactModalPortal .product-card h4 {
+      font-size: 1.1rem;
+      text-align: center;
+      margin: 0.5rem auto; }
+    .ReactModalPortal .product-card h2 {
+      font-size: 1.2rem;
+      color: darkgreen;
+      font-weight: bold;
+      text-align: center;
+      margin: 0.5rem auto; }
+    .ReactModalPortal .product-card p.description {
+      font-size: 0.9rem;
+      color: #484949;
+      margin: 0; }
+    .ReactModalPortal .product-card p.category {
+      font-size: 0.9rem;
+      color: #484949;
+      text-transform: uppercase;
+      margin: 1rem 0 0.5rem;
+      text-align: center; }
+
+.product-list {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-flow: row wrap; }
+  .product-list .product-card {
+    cursor: pointer;
+    width: 18%;
+    max-width: 300px;
+    margin: 10px;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-flow: column;
+    -webkit-box-align: center;
+            align-items: center;
+    padding: 1rem; }
+    .product-list .product-card h4 {
+      font-size: 1.1rem;
+      text-align: center;
+      margin: 0.5rem auto; }
+    .product-list .product-card h2 {
+      font-size: 1.2rem;
+      color: darkgreen;
+      font-weight: bold;
+      text-align: center;
+      margin: 0.5rem auto; }
+    .product-list .product-card p.description {
+      font-size: 0.9rem;
+      color: #484949;
+      margin: 0; }
+    .product-list .product-card p.category {
+      font-size: 0.9rem;
+      color: #484949;
+      text-transform: uppercase;
+      margin: 1rem 0 0.5rem;
+      text-align: center; }
+
+.navbar {
+  background: white;
+  box-shadow: 7px 7px 5px rgba(0, 0, 0, 0.06); }
+  .navbar #nav-logo {
+    max-width: 150px;
+    width: 100%; }
+
+#sidebar {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-flow: column;
+  background: #484949;
+  box-shadow: 7px 7px 5px rgba(0, 0, 0, 0.06);
+  height: 100vh;
+  position: -webkit-sticky;
+  position: sticky; }
+  #sidebar .sidebar-brand {
+    background: #2f2f2f;
+    padding: 1rem 0.5rem; }
+    #sidebar .sidebar-brand #nav-logo {
+      display: block;
+      margin: 0 auto;
+      max-width: 120px;
+      width: 100%; }
+  #sidebar .sidebar-links {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-flow: column;
+    -webkit-box-pack: center;
+            justify-content: center;
+    margin-top: 1.5rem; }
+    #sidebar .sidebar-links .admin-controls {
+      display: -webkit-box;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+              flex-flow: column;
+      -webkit-box-pack: center;
+              justify-content: center; }
+    #sidebar .sidebar-links a {
+      color: white;
+      font-size: 1.1rem;
+      width: 100%;
+      padding: 0.5rem 1rem; }
+      #sidebar .sidebar-links a:hover {
+        background: #2f2f2f;
+        text-decoration: none; }
+    #sidebar .sidebar-links a.btn-danger {
+      margin: 1rem auto;
+      max-width: 95%;
+      position: absolute;
+      bottom: 0;
+      align-self: center;
+      background: #2f2f2f; }
+      #sidebar .sidebar-links a.btn-danger:hover {
+        background: #dc3545; }
