@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 import Dashboard from "./modules/Dashboard";
 import SidebarNav from "./modules/SidebarNav";
 import myApp from 'myApp';
@@ -17,7 +17,6 @@ class App extends Component {
 
     render() {
         const {user} = this.state;
-        console.info(user);
         return (
             <React.Fragment>
                 <SidebarNav
@@ -32,7 +31,7 @@ class App extends Component {
 }
 
 render((
-    <BrowserRouter>
+    <HashRouter>
         <App/>
-    </BrowserRouter>
+    </HashRouter>
 ), document.getElementById('app'));

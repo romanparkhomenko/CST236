@@ -62,8 +62,8 @@ export default class ManageProducts extends Component {
                     <td>${parseInt(product.price).toFixed(2)}</td>
                     <td className="description">{product.description}</td>
                     <td className="category">{product.category_name}</td>
-                    <td onClick={() => this.setActiveProduct(product)}>EDIT</td>
-                    <td onClick={() => this.deleteProduct(product)}>DELETE</td>
+                    <td><button className="edit-button" onClick={() => this.setActiveProduct(product)}>EDIT</button></td>
+                    <td><button className="delete-button" onClick={() => this.deleteProduct(product)}>DELETE</button></td>
                 </tr>
             )}
             </tbody>
@@ -110,15 +110,6 @@ export default class ManageProducts extends Component {
             <React.Fragment>
                 <div className="product-management">
                     <h1>Manage Products</h1>
-                    <div className="products">
-                        {!isLoading ? (
-                            <div className="product-table">
-                                {this.renderProducts(productList)}
-                            </div>
-                        ) : (
-                            <p className="loading">Loading Product Catalog.</p>
-                        )}
-                    </div>
                     <div className="create-product">
                         <FormModule
                             formTitle={"Create Product"}
@@ -128,29 +119,40 @@ export default class ManageProducts extends Component {
                             handleSuccess={this.handleSuccess}
                         />
                     </div>
+                    <div className="products">
+                        {!isLoading ? (
+                            <div className="product-table">
+                                {this.renderProducts(productList)}
+                            </div>
+                        ) : (
+                            <p className="loading">Loading Product Catalog.</p>
+                        )}
+                    </div>
                     <ReactModal
                         isOpen={showModal}
                         onRequestClose={this.handleCloseModal}
                         shouldCloseOnOverlayClick={true}
                     >
-                        <button onClick={this.handleCloseModal}>Close Preview</button>
-                        <div className="product-card">
-                            <h3>Original Details</h3>
-                            <img src="https://via.placeholder.com/300" alt="placeholder"/>
-                            <h4>{activeProduct.name}</h4>
-                            <h2>${parseInt(activeProduct.price).toFixed(2)}</h2>
-                            <p className="description">{activeProduct.description}</p>
-                            <p className="category">{activeProduct.category_name}</p>
-                        </div>
-                        <div className="create-product">
-                            <FormModule
-                                formTitle={"Edit Product"}
-                                useProductFields={true}
-                                useUserInfoFields={false}
-                                methodURL={"/store/api/product/edit.php"}
-                                productID={activeProduct.id}
-                                handleSuccess={this.handleSuccess}
-                            />
+                        <button className="close-button" onClick={this.handleCloseModal}>Close</button>
+                        <div className="product-content">
+                            <div className="product-card">
+                                <h3>Original Details</h3>
+                                <img src="https://via.placeholder.com/150" alt="placeholder"/>
+                                <h4>{activeProduct.name}</h4>
+                                <h2>${parseInt(activeProduct.price).toFixed(2)}</h2>
+                                <p className="description">{activeProduct.description}</p>
+                                <p className="category">{activeProduct.category_name}</p>
+                            </div>
+                            <div className="create-product">
+                                <FormModule
+                                    formTitle={"Edit Product"}
+                                    useProductFields={true}
+                                    useUserInfoFields={false}
+                                    methodURL={"/store/api/product/edit.php"}
+                                    productID={activeProduct.id}
+                                    handleSuccess={this.handleSuccess}
+                                />
+                            </div>
                         </div>
                     </ReactModal>
                 </div>

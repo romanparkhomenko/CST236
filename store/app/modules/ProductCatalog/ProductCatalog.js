@@ -29,11 +29,11 @@ export default class ProductCatalog extends Component {
     };
 
     render() {
-        const {page, searchQuery} = this.state;
+        const { page, searchQuery } = this.state;
         return (
             <React.Fragment>
                 <div className="product-catalog">
-                    <h2>Product now</h2>
+                    <h2>Products</h2>
                     <div className="filter-tools">
                         <Search
                             handleSearch={this.handleSearch}
@@ -45,6 +45,7 @@ export default class ProductCatalog extends Component {
                     <Products
                         page={page}
                         searchQuery={searchQuery}
+                        addToCart={this.props.addToCart}
                     />
                 </div>
             </React.Fragment>

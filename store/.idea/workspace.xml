@@ -37,7 +37,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/api/orders" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -48,11 +48,11 @@
       <recent name="$PROJECT_DIR$/app/modules/ProductCatalog" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/api/orders" />
       <recent name="$PROJECT_DIR$/app/modules" />
-      <recent name="$PROJECT_DIR$/api/user" />
       <recent name="$PROJECT_DIR$/api/objects" />
-      <recent name="$PROJECT_DIR$/api/product" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/api/user" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -79,17 +79,7 @@
     <option name="allServicesViewState">
       <serviceView>
         <treeState>
-          <expand>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@8d6312a2" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-            </path>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@8d6312a2" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@dd39e27" type="9fbbdea:ServiceModel$ServiceNode" />
-            </path>
-          </expand>
+          <expand />
           <select />
         </treeState>
       </serviceView>
@@ -113,7 +103,9 @@
       <workItem from="1574094302239" duration="187000" />
       <workItem from="1574443888434" duration="219000" />
       <workItem from="1574444148935" duration="79000" />
-      <workItem from="1574444235439" duration="25069000" />
+      <workItem from="1574444235439" duration="25638000" />
+      <workItem from="1574996128027" duration="16958000" />
+      <workItem from="1575231441088" duration="5960000" />
     </task>
     <servers />
   </component>

@@ -63,12 +63,13 @@ export default class Products extends Component {
     renderProducts = (products) => {
         console.info(products);
         return products.map((product) =>
-            <div className="product-card" key={product.name} onClick={() => this.setActiveProduct(product)}>
-                <img src="https://via.placeholder.com/150" alt="placeholder"/>
-                <h4>{product.name}</h4>
-                <h2>${parseInt(product.price).toFixed(2)}</h2>
-                <p className="description">{product.description}</p>
+            <div className="product-card" key={product.name}>
+                <img src="https://via.placeholder.com/150" alt="placeholder" onClick={() => this.setActiveProduct(product)}/>
+                <h4 onClick={() => this.setActiveProduct(product)}>{product.name}</h4>
+                <h2 onClick={() => this.setActiveProduct(product)}>${parseInt(product.price).toFixed(2)}</h2>
+                <p className="description" onClick={() => this.setActiveProduct(product)}>{product.description}</p>
                 <p className="category">{product.category_name}</p>
+                <button onClick={() => this.props.addToCart(product)}>Add To Cart</button>
             </div>
         );
     };
@@ -98,6 +99,7 @@ export default class Products extends Component {
                         <h2>${parseInt(activeProduct.price).toFixed(2)}</h2>
                         <p className="description">{activeProduct.description}</p>
                         <p className="category">{activeProduct.category_name}</p>
+                        <button onClick={() => this.props.addToCart(activeProduct)}>Add To Cart</button>
                     </div>
                 </ReactModal>
             </React.Fragment>

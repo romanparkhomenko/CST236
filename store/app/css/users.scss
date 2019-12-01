@@ -1,0 +1,62 @@
+.user-management {
+  button {
+    -webkit-appearance: none;
+    padding: 0.5rem;
+    text-align: center;
+    width: 100%;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: all 250ms;
+    &:hover {transition: all 250ms;}
+  }
+  div.create-user {
+    box-shadow: 1px 1px 8px rgba(0,0,0,0.3);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    max-width: 500px;
+    .user-block {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-flow: row wrap;
+      .form-field {
+        width: 45%;
+        max-width: 350px;
+        display: flex;
+        flex-flow: column;
+        margin: 0 5px 1rem;
+      }
+    }
+    button.submit-button {
+      background: #00A86B;
+      &:hover {background: darken(#00A86B, 10%);}
+    }
+  }
+  div.user-table {
+    table {
+      border-collapse: collapse;
+      text-align: left;
+      width: 100%;
+      max-width: 100%;
+    }
+    table tr {
+      background: white;
+      border-bottom: 1px solid
+    }
+    table th, table td {
+      padding: 0.5rem;
+    }
+    .edit-button {
+      background: #2193b0;
+      &:hover {background: darken(#2193b0, 10%);}
+    }
+    .delete-button {
+      background: #dc3545;
+      &:hover {background: darken(#dc3545, 10%);}
+    }
+  }
+}
+

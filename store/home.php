@@ -7,6 +7,7 @@ if (!isset($_SESSION['username'])) {
 } else {
     header('location: home.php');
 }
+
 if (isset($_GET['logout'])) {
     session_destroy();
     unset($_SESSION['username']);

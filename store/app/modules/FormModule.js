@@ -60,14 +60,6 @@ export default class FormModule extends Component {
             value: '',
         },
         {
-            label: 'Admin?',
-            element: 'input',
-            type: 'checkbox',
-            name: 'admin',
-            placeholder: 'admin',
-            value: '',
-        },
-        {
             label: 'Email',
             element: 'input',
             type: 'email',
@@ -89,6 +81,14 @@ export default class FormModule extends Component {
             type: 'text',
             name: 'lastname',
             placeholder: 'Last Name',
+            value: '',
+        },
+        {
+            label: 'Admin?',
+            element: 'input',
+            type: 'checkbox',
+            name: 'admin',
+            placeholder: 'admin',
             value: '',
         },
     ];
@@ -223,7 +223,6 @@ export default class FormModule extends Component {
                     <Formik
                         enableReinitialize
                         initialValues={initialValues}
-                        // validationSchema={validationSchema}
                         onSubmit={(values, formikActions) => {
                             this.handleFormSubmission(values, formikActions);
                         }}

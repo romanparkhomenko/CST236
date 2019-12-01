@@ -1,3 +1,15 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:8889
+-- Generation Time: Dec 01, 2019 at 10:14 PM
+-- Server version: 5.7.25
+-- PHP Version: 7.3.1
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
 --
 -- Database: `store`
 --
@@ -25,6 +37,63 @@ INSERT INTO `categories` (`id`, `name`, `description`, `created`, `modified`) VA
 (2, 'Accessories', 'Accessories and peripherals for gaming.', '2019-11-13 00:35:07', '2019-11-15 00:34:33'),
 (3, 'Games', 'Best selection of Video Games', '2019-11-13 00:35:07', '2019-11-15 00:34:54'),
 (4, 'Televisions', 'Televisions and monitors for your gaming needs.', '2019-11-13 00:00:00', '2019-11-14 20:27:26');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orderdetails`
+--
+
+CREATE TABLE `orderdetails` (
+  `id` int(4) NOT NULL,
+  `orders_id` int(4) NOT NULL,
+  `products_id` int(4) NOT NULL,
+  `quantity` int(4) NOT NULL,
+  `price` decimal(10,0) NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `orderdetails`
+--
+
+INSERT INTO `orderdetails` (`id`, `orders_id`, `products_id`, `quantity`, `price`, `description`) VALUES
+(1, 9, 12, 1, '59', 'Another year, another Call of Duty'),
+(2, 9, 13, 1, '29', 'The original video game'),
+(3, 9, 11, 1, '49', 'Another classic release from Nintendo'),
+(4, 9, 23, 1, '110', 'okay'),
+(5, 11, 23, 1, '110', 'okay'),
+(6, 11, 15, 1, '899', 'A quality TV with modern resolutions'),
+(11, 12, 13, 1, '29', 'The original video game'),
+(13, 12, 11, 1, '49', 'Another classic release from Nintendo'),
+(14, 12, 8, 1, '150', 'Gaming headphones with microphone!'),
+(15, 13, 13, 1, '29', 'The original video game'),
+(16, 13, 11, 1, '49', 'Another classic release from Nintendo'),
+(17, 13, 7, 1, '59', 'Nintendo additional controllers');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(4) NOT NULL,
+  `created` datetime NOT NULL,
+  `users_id` int(4) NOT NULL,
+  `fulfilled` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `created`, `users_id`, `fulfilled`) VALUES
+(9, '2019-11-28 21:09:38', 1, 1),
+(10, '2019-11-28 21:16:41', 2, 0),
+(11, '2019-11-30 17:28:38', 1, 1),
+(12, '2019-12-01 14:41:35', 1, 1),
+(13, '2019-12-01 15:02:12', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -107,6 +176,21 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `orderdetails`
+--
+ALTER TABLE `orderdetails`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `orders_id` (`orders_id`),
+  ADD KEY `products_id` (`products_id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `users_id` (`users_id`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -129,6 +213,18 @@ ALTER TABLE `categories`
   MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `orderdetails`
+--
+ALTER TABLE `orderdetails`
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
@@ -138,4 +234,21 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `orderdetails`
+--
+ALTER TABLE `orderdetails`
+  ADD CONSTRAINT `orderdetails_ibfk_1` FOREIGN KEY (`orders_id`) REFERENCES `orders` (`id`),
+  ADD CONSTRAINT `orderdetails_ibfk_2` FOREIGN KEY (`products_id`) REFERENCES `products` (`id`);
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`);

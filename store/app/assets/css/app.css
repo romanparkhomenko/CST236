@@ -15,7 +15,9 @@ div#app {
   -webkit-font-smoothing: antialiased; }
 
 main.dashboard {
-  padding: 1rem; }
+  padding: 1rem;
+  height: 100vh;
+  overflow: scroll; }
 
 .product-catalog {
   margin-top: 2rem; }
@@ -26,7 +28,15 @@ main.dashboard {
     margin: 1rem 0; }
     .product-catalog .filter-tools div.pagination {
       -webkit-box-flex: 1;
-              flex: 1 0 auto; }
+              flex: 1 0 auto;
+      display: -webkit-box;
+      display: flex;
+      -webkit-box-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+              justify-content: center; }
+      .product-catalog .filter-tools div.pagination button.page-button {
+        margin: 5px; }
     .product-catalog .filter-tools div.search {
       -webkit-box-flex: 1;
               flex: 1 0 auto; }
@@ -34,11 +44,40 @@ main.dashboard {
 .ReactModalPortal {
   position: relative;
   z-index: 1000; }
-  .ReactModalPortal .product-card {
+  .ReactModalPortal button {
+    -webkit-appearance: none;
+    padding: 0.5rem;
+    text-align: center;
     width: 100%;
-    max-width: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    -webkit-transition: all 250ms;
+    transition: all 250ms; }
+    .ReactModalPortal button:hover {
+      -webkit-transition: all 250ms;
+      transition: all 250ms; }
+  .ReactModalPortal .close-button {
+    background: white;
+    float: right;
+    color: #484949;
+    max-width: 75px;
+    border: 1px solid #484949; }
+  .ReactModalPortal div.product-content, .ReactModalPortal div.user-content {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+            justify-content: center;
+    width: 100%; }
+  .ReactModalPortal .product-card, .ReactModalPortal .user-card {
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
     padding: 1rem;
-    box-shadow: none;
+    -webkit-box-flex: 1;
+            flex: 1 0 auto;
+    margin: 1rem;
+    max-width: 500px;
     display: -webkit-box;
     display: flex;
     -webkit-box-orient: vertical;
@@ -46,26 +85,56 @@ main.dashboard {
             flex-flow: column;
     -webkit-box-align: center;
             align-items: center; }
-    .ReactModalPortal .product-card h4 {
+    .ReactModalPortal .product-card h4, .ReactModalPortal .user-card h4 {
       font-size: 1.1rem;
       text-align: center;
       margin: 0.5rem auto; }
-    .ReactModalPortal .product-card h2 {
+    .ReactModalPortal .product-card h2, .ReactModalPortal .user-card h2 {
       font-size: 1.2rem;
       color: darkgreen;
       font-weight: bold;
       text-align: center;
       margin: 0.5rem auto; }
-    .ReactModalPortal .product-card p.description {
+    .ReactModalPortal .product-card p.description, .ReactModalPortal .user-card p.description {
       font-size: 0.9rem;
       color: #484949;
       margin: 0; }
-    .ReactModalPortal .product-card p.category {
+    .ReactModalPortal .product-card p.category, .ReactModalPortal .user-card p.category {
       font-size: 0.9rem;
       color: #484949;
       text-transform: uppercase;
       margin: 1rem 0 0.5rem;
       text-align: center; }
+  .ReactModalPortal div.create-product {
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    -webkit-box-flex: 1;
+            flex: 1 0 auto;
+    margin: 1rem;
+    max-width: 500px; }
+    .ReactModalPortal div.create-product .product-block, .ReactModalPortal div.create-product .user-block {
+      display: -webkit-box;
+      display: flex;
+      -webkit-box-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+              justify-content: center;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+              flex-flow: row wrap; }
+      .ReactModalPortal div.create-product .product-block .form-field, .ReactModalPortal div.create-product .user-block .form-field {
+        width: 45%;
+        max-width: 350px;
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+                flex-flow: column;
+        margin: 0 5px 1rem; }
+    .ReactModalPortal div.create-product button.submit-button {
+      background: #00A86B; }
+      .ReactModalPortal div.create-product button.submit-button:hover {
+        background: #00754b; }
 
 .product-list {
   display: -webkit-box;
@@ -75,8 +144,8 @@ main.dashboard {
           flex-flow: row wrap; }
   .product-list .product-card {
     cursor: pointer;
-    width: 18%;
-    max-width: 300px;
+    width: 100%;
+    max-width: 250px;
     margin: 10px;
     box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
     display: -webkit-box;
@@ -107,6 +176,88 @@ main.dashboard {
       text-transform: uppercase;
       margin: 1rem 0 0.5rem;
       text-align: center; }
+
+.product-management button, .cart button {
+  -webkit-appearance: none;
+  padding: 0.5rem;
+  text-align: center;
+  width: 100%;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  -webkit-transition: all 250ms;
+  transition: all 250ms; }
+  .product-management button:hover, .cart button:hover {
+    -webkit-transition: all 250ms;
+    transition: all 250ms; }
+
+.product-management div.create-product, .cart div.create-product {
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  max-width: 500px; }
+  .product-management div.create-product .product-block, .cart div.create-product .product-block {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+            justify-content: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-flow: row wrap; }
+    .product-management div.create-product .product-block .form-field, .cart div.create-product .product-block .form-field {
+      width: 45%;
+      max-width: 350px;
+      display: -webkit-box;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+              flex-flow: column;
+      margin: 0 5px 1rem; }
+  .product-management div.create-product button.submit-button, .cart div.create-product button.submit-button {
+    background: #00A86B; }
+    .product-management div.create-product button.submit-button:hover, .cart div.create-product button.submit-button:hover {
+      background: #00754b; }
+
+.product-management div.product-table table, .cart div.product-table table {
+  border-collapse: collapse;
+  text-align: left;
+  width: 100%; }
+
+.product-management div.product-table table tr, .cart div.product-table table tr {
+  background: white;
+  border-bottom: 1px solid; }
+
+.product-management div.product-table table th, .product-management div.product-table table td, .cart div.product-table table th, .cart div.product-table table td {
+  padding: 0.5rem 1rem; }
+
+.product-management div.product-table .edit-button, .cart div.product-table .edit-button {
+  background: #2193b0; }
+  .product-management div.product-table .edit-button:hover, .cart div.product-table .edit-button:hover {
+    background: #196f85; }
+
+.product-management div.product-table .delete-button, .cart div.product-table .delete-button {
+  background: #dc3545; }
+  .product-management div.product-table .delete-button:hover, .cart div.product-table .delete-button:hover {
+    background: #bd2130; }
+
+.cart button.checkout-button {
+  background: #00A86B; }
+  .cart button.checkout-button:hover {
+    background: #00754b; }
+
+.cart p.total-cost {
+  color: #484949;
+  font-size: 2rem;
+  margin: 1rem auto;
+  width: 90%;
+  text-align: right; }
+  .cart p.total-cost span {
+    font-size: 1.7rem;
+    font-weight: 700; }
 
 .navbar {
   background: white;
@@ -168,3 +319,71 @@ main.dashboard {
       background: #2f2f2f; }
       #sidebar .sidebar-links a.btn-danger:hover {
         background: #dc3545; }
+
+.user-management button {
+  -webkit-appearance: none;
+  padding: 0.5rem;
+  text-align: center;
+  width: 100%;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  -webkit-transition: all 250ms;
+  transition: all 250ms; }
+  .user-management button:hover {
+    -webkit-transition: all 250ms;
+    transition: all 250ms; }
+
+.user-management div.create-user {
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  max-width: 500px; }
+  .user-management div.create-user .user-block {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+            justify-content: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-flow: row wrap; }
+    .user-management div.create-user .user-block .form-field {
+      width: 45%;
+      max-width: 350px;
+      display: -webkit-box;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+              flex-flow: column;
+      margin: 0 5px 1rem; }
+  .user-management div.create-user button.submit-button {
+    background: #00A86B; }
+    .user-management div.create-user button.submit-button:hover {
+      background: #00754b; }
+
+.user-management div.user-table table {
+  border-collapse: collapse;
+  text-align: left;
+  width: 100%;
+  max-width: 100%; }
+
+.user-management div.user-table table tr {
+  background: white;
+  border-bottom: 1px solid; }
+
+.user-management div.user-table table th, .user-management div.user-table table td {
+  padding: 0.5rem; }
+
+.user-management div.user-table .edit-button {
+  background: #2193b0; }
+  .user-management div.user-table .edit-button:hover {
+    background: #196f85; }
+
+.user-management div.user-table .delete-button {
+  background: #dc3545; }
+  .user-management div.user-table .delete-button:hover {
+    background: #bd2130; }

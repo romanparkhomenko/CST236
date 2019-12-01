@@ -64,8 +64,8 @@ export default class ManageUsers extends Component {
                     <td>{user.lastname}</td>
                     <td>{user.email}</td>
                     <td>{user.admin === "1" ? "YES" : "NO"}</td>
-                    <td onClick={() => this.setActiveUser(user)}>EDIT</td>
-                    <td onClick={() => this.deleteUser(user)}>DELETE</td>
+                    <td><button className="edit-button" onClick={() => this.setActiveUser(user)}>EDIT</button></td>
+                    <td><button className="delete-button" onClick={() => this.deleteUser(user)}>DELETE</button></td>
                 </tr>
             )}
             </tbody>
@@ -126,26 +126,28 @@ export default class ManageUsers extends Component {
                         onRequestClose={this.handleCloseModal}
                         shouldCloseOnOverlayClick={true}
                     >
-                        <button onClick={this.handleCloseModal}>Close Preview</button>
-                        <div className="user-card">
-                            <h3>Original Details</h3>
-                            <ul>
-                                <li>Username: {activeUser.username}</li>
-                                <li>Is Admin: {activeUser.admin === "1" ? "YES" : "NO"}</li>
-                                <li>First Name: {activeUser.firstname}</li>
-                                <li>Last Name: {activeUser.lastname}</li>
-                                <li>Email: {activeUser.email}</li>
-                            </ul>
-                        </div>
-                        <div className="create-product">
-                            <FormModule
-                                formTitle={"Edit User"}
-                                useProductFields={false}
-                                useUserInfoFields={true}
-                                methodURL={"/store/api/user/edit.php"}
-                                userID={activeUser.id}
-                                handleSuccess={this.handleSuccess}
-                            />
+                        <button className="close-button" onClick={this.handleCloseModal}>Close</button>
+                        <div className="user-content">
+                            <div className="user-card">
+                                <h3>Original Details</h3>
+                                <ul>
+                                    <li>Username: {activeUser.username}</li>
+                                    <li>Is Admin: {activeUser.admin === "1" ? "YES" : "NO"}</li>
+                                    <li>First Name: {activeUser.firstname}</li>
+                                    <li>Last Name: {activeUser.lastname}</li>
+                                    <li>Email: {activeUser.email}</li>
+                                </ul>
+                            </div>
+                            <div className="create-product">
+                                <FormModule
+                                    formTitle={"Edit User"}
+                                    useProductFields={false}
+                                    useUserInfoFields={true}
+                                    methodURL={"/store/api/user/edit.php"}
+                                    userID={activeUser.id}
+                                    handleSuccess={this.handleSuccess}
+                                />
+                            </div>
                         </div>
                     </ReactModal>
                 </div>

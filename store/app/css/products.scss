@@ -9,7 +9,13 @@ $dark-boulder: #2f2f2f;
     display: flex;
     max-width: 75%;
     margin: 1rem 0;
-    div.pagination {flex: 1 0 auto;}
+    div.pagination {
+      flex: 1 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      button.page-button {margin: 5px;}
+    }
     div.search {flex: 1 0 auto;}
   }
 }
@@ -17,12 +23,40 @@ $dark-boulder: #2f2f2f;
 .ReactModalPortal {
   position: relative;
   z-index: 1000;
-  .product-card {
+  button {
+    -webkit-appearance: none;
+    padding: 0.5rem;
+    text-align: center;
     width: 100%;
-    max-width: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: all 250ms;
+    &:hover {transition: all 250ms;}
+  }
+  .close-button {
+    background: white;
+    float: right;
+    color: $boulder;
+    max-width: 75px;
+    border: 1px solid $boulder;
+  }
+  div.product-content, div.user-content {
+    display: flex;
+    //align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .product-card, .user-card {
+    box-shadow: 1px 1px 8px rgba(0,0,0,0.3);
     padding: 1rem;
-    box-shadow: none;
-    display: flex; flex-flow: column;
+    flex: 1 0 auto;
+    margin: 1rem;
+    max-width: 500px;
+    display: flex;
+    flex-flow: column;
     align-items: center;
     //justify-content: center;
     h4 {
@@ -49,6 +83,30 @@ $dark-boulder: #2f2f2f;
       text-align: center;
     }
   }
+  div.create-product {
+    box-shadow: 1px 1px 8px rgba(0,0,0,0.3);
+    padding: 1rem;
+    flex: 1 0 auto;
+    margin: 1rem;
+    max-width: 500px;
+    .product-block, .user-block {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-flow: row wrap;
+      .form-field {
+        width: 45%;
+        max-width: 350px;
+        display: flex;
+        flex-flow: column;
+        margin: 0 5px 1rem;
+      }
+    }
+    button.submit-button {
+      background: #00A86B;
+      &:hover {background: darken(#00A86B, 10%);}
+    }
+  }
 }
 
 .product-list {
@@ -57,8 +115,8 @@ $dark-boulder: #2f2f2f;
 
   .product-card {
     cursor: pointer;
-    width: 18%;
-    max-width: 300px;
+    width: 100%;
+    max-width: 250px;
     margin: 10px;
     box-shadow: 1px 1px 8px rgba(0,0,0,0.3);
     display: flex; flex-flow: column;
@@ -91,4 +149,80 @@ $dark-boulder: #2f2f2f;
   }
 
   //.product-modal {z-index: 10000;}
+}
+
+.product-management, .cart {
+  button {
+    -webkit-appearance: none;
+    padding: 0.5rem;
+    text-align: center;
+    width: 100%;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: all 250ms;
+    &:hover {transition: all 250ms;}
+  }
+  div.create-product {
+    box-shadow: 1px 1px 8px rgba(0,0,0,0.3);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    max-width: 500px;
+    .product-block {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-flow: row wrap;
+      .form-field {
+        width: 45%;
+        max-width: 350px;
+        display: flex;
+        flex-flow: column;
+        margin: 0 5px 1rem;
+      }
+    }
+    button.submit-button {
+      background: #00A86B;
+      &:hover {background: darken(#00A86B, 10%);}
+    }
+  }
+  div.product-table {
+    table {
+      border-collapse: collapse;
+      text-align: left;
+      width: 100%;
+    }
+    table tr {
+      background: white;
+      border-bottom: 1px solid
+    }
+    table th, table td {
+      padding: 0.5rem 1rem;
+    }
+    .edit-button {
+      background: #2193b0;
+      &:hover {background: darken(#2193b0, 10%);}
+    }
+    .delete-button {
+      background: #dc3545;
+      &:hover {background: darken(#dc3545, 10%);}
+    }
+  }
+}
+
+.cart {
+  button.checkout-button {
+    background: #00A86B;
+    &:hover {background: darken(#00A86B, 10%);}
+  }
+  p.total-cost {
+    color: $boulder;
+    font-size: 2rem;
+    margin: 1rem auto;
+    width: 90%;
+    text-align: right;
+    span {font-size: 1.7rem; font-weight: 700;}
+  }
 }
