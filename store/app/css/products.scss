@@ -225,4 +225,17 @@ $dark-boulder: #2f2f2f;
     text-align: right;
     span {font-size: 1.7rem; font-weight: 700;}
   }
+  td.cart-quantity {
+    display: table-cell;
+    align-items: center;
+    width: 20%;
+    span {margin: 0 5px;}
+    button {
+      border-radius: 50%;
+      background: #2193b0;
+      padding: 2px;
+      max-width: 26px;
+      &:hover {background: darken(#2193b0, 10%);}
+    }
+  }
 }

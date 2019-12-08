@@ -34,6 +34,27 @@ if ($result->num_rows > 0) {
         array_push($orders_arr, $order_item);
     }
 
+    $lastOrder = end($orders_arr);
+    if ($lastOrder['fulfilled'] == "1") {
+        if ($order->createNewOrder($_GET['user'])) {
+            $newResult = $order->readUserOrders($_GET['user']);
+            while($newRow = $newResult->fetch_assoc()) {
+                $order_item = array(
+                    "id" => $newRow['id'],
+                    "created" => $newRow['created'],
+                    "users_id" => $newRow['users_id'],
+                    "fulfilled" => $newRow['fulfilled']
+                );
+
+                array_push($orders_arr, $order_item);
+            }
+
+            // Set 200 response and echo array
+            http_response_code(200);
+            echo json_encode($orders_arr);
+        }
+    }
+
     // Set 200 response and echo array
     http_response_code(200);
     echo json_encode($orders_arr);

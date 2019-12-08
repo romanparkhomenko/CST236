@@ -37,6 +37,16 @@ class Order {
         return false;
     }
 
+    function createOrder($db, $users_id) {
+        $query = "INSERT INTO orders (`created`, `users_id`, `fulfilled`) VALUES (now(), '$users_id', 0)";
+
+        if (mysqli_query($db, $query)) {
+            return true;
+        }
+
+        return false;
+    }
+
     function createOrderItem() {
         $query = "INSERT INTO orderdetails (`orders_id`, `products_id`, `quantity`, `price`, `description`) VALUES ('$this->orders_id', '$this->products_id', '$this->quantity', '$this->price', '$this->description')";
 
@@ -54,11 +64,21 @@ class Order {
         return $result = $this->conn->query($query);
     }
 
-    function checkout() {
-        $query = "UPDATE orders SET fulfilled=1 WHERE id='$this->orders_id'";
+    function checkout($db, $orders_id, $users_id) {
+        $query = "UPDATE orders SET fulfilled=1 WHERE id='$orders_id'";
+
+        if(mysqli_query($db, $query)) {
+            $this->createOrder($db, $users_id);
+            return true;
+        }
+
+        return false;
+    }
+
+    function updateQuantity($orders_id, $product_id, $quantity) {
+        $query = "UPDATE orderdetails SET quantity='$quantity' WHERE orders_id='$orders_id' AND products_id='$product_id'";
 
         if (mysqli_query($this->conn, $query)) {
-            $this->createNewOrder($this->users_id);
             return true;
         }
 

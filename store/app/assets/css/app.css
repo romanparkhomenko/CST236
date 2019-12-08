@@ -259,6 +259,21 @@ main.dashboard {
     font-size: 1.7rem;
     font-weight: 700; }
 
+.cart td.cart-quantity {
+  display: table-cell;
+  -webkit-box-align: center;
+          align-items: center;
+  width: 20%; }
+  .cart td.cart-quantity span {
+    margin: 0 5px; }
+  .cart td.cart-quantity button {
+    border-radius: 50%;
+    background: #2193b0;
+    padding: 2px;
+    max-width: 26px; }
+    .cart td.cart-quantity button:hover {
+      background: #196f85; }
+
 .navbar {
   background: white;
   box-shadow: 7px 7px 5px rgba(0, 0, 0, 0.06); }

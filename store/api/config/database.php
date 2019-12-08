@@ -12,6 +12,7 @@ class Database {
     private $username = "oypfg1lac0ptb6a3";
     private $password = "spk5blfn1jaukmws";
     private $db_name = "ul7q3uvh6zhlma6g";
+
     public $conn;
 
     // Function to get DB connection
