@@ -27,6 +27,30 @@ class Order {
         return $result = $this->conn->query($query);
     }
 
+    // Read the users orders.
+    public function readFulfilledOrders($date1, $date2) {
+        $query = "SELECT * FROM orders WHERE fulfilled = 1 AND created BETWEEN '$date1' AND '$date2'";
+
+        return $result = $this->conn->query($query);
+    }
+
+    public function readAllSoldProducts($date1, $date2) {
+        $query = "SELECT orderdetails.products_id AS products_id, products.name, SUM(orderdetails.quantity) AS total_quantity, 
+                    SUM(orderdetails.price) AS total_price
+                  FROM ( ( orderdetails 
+                  INNER JOIN orders ON orders.id = orderdetails.orders_id ) 
+                  INNER JOIN products ON orderdetails.products_id = products.id ) 
+                  WHERE orders.fulfilled = 1 
+                  AND orders.created BETWEEN '$date1' AND '$date2' 
+                  GROUP BY orderdetails.products_id 
+                  ORDER BY total_quantity DESC";
+
+        return $result = $this->conn->query($query);
+    }
+
+
+
+
     function createNewOrder($users_id) {
         $query = "INSERT INTO orders (`created`, `users_id`, `fulfilled`) VALUES (now(), '$users_id', 0)";
 

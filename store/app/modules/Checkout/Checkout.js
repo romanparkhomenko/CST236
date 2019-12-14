@@ -1,9 +1,4 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import FormModule from "../FormModule";
-import ReactModal from "react-modal";
-
 
 export default class Checkout extends Component {
 
@@ -15,8 +10,32 @@ export default class Checkout extends Component {
     }
 
     componentDidMount() {
-        this.getCartItems();
+        this.getCartNumber();
     }
+
+    // Get the user's order number. If it doesn't exist a new one is created. If the order number is 0,
+    // the cart will show no items added.
+    getCartNumber = () => {
+        fetch('/store/api/orders/read.php?user=' + this.props.user.id, {
+            method: 'GET',
+        })
+            .then(res => res.json())
+            .then(orders => {
+                let activeCartID = '';
+                for (let i = 0; i < orders.length; i++) {
+                    if (orders[i].fulfilled !== "1") {
+                        activeCartID = orders[i].id;
+                        break;
+                    } else {
+                        activeCartID = 0;
+                    }
+                }
+                this.setState(prevState => ({
+                    cartID: activeCartID,
+                }));
+                this.getCartItems(activeCartID);
+            });
+    };
 
     handleOpenModal = () => {
         this.setState({ showModal: true });
@@ -26,13 +45,13 @@ export default class Checkout extends Component {
         this.setState({ showModal: false });
     };
 
-    getCartItems = () => {
-        if (this.props.cart === 0) {
+    getCartItems = (activeCartID) => {
+        if (activeCartID === 0) {
             this.setState(prevState => ({
                 isLoading: true,
             }));
         } else {
-            fetch('/store/api/orders/readOrderItems.php?id=' + this.props.cart, {
+            fetch('/store/api/orders/readOrderItems.php?id=' + activeCartID, {
                 method: 'GET',
             })
                 .then(res => res.json())
@@ -146,7 +165,7 @@ export default class Checkout extends Component {
     removeProduct = (product) => {
         let confirmation = confirm('Are you sure you want to remove ' + product.name + '?');
         const values = {};
-        values.orders_id = parseInt(this.props.cart);
+        values.orders_id = parseInt(this.state.cartID);
         values.products_id = parseInt(product.id);
 
         if (confirmation) {
@@ -171,9 +190,11 @@ export default class Checkout extends Component {
         return total.toFixed(2);
     };
 
+
+
     checkoutOrder = () => {
         const values = {};
-        values.orders_id = parseInt(this.props.cart);
+        values.orders_id = parseInt(this.state.cartID);
         values.users_id = parseInt(this.props.user.id);
         fetch('/store/api/orders/checkoutOrder.php', {
             method: 'POST',
@@ -195,7 +216,7 @@ export default class Checkout extends Component {
 
     checkoutAndUpdateOrder = () => {
         const values = {};
-        values.orders_id = parseInt(this.props.cart);
+        values.orders_id = parseInt(this.state.cartID);
         values.users_id = parseInt(this.props.user.id);
         values.cart = this.state.cart;
         fetch('/store/api/orders/updateAndCheckout.php', {

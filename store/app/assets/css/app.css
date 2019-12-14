@@ -244,6 +244,68 @@ main.dashboard {
   .product-management div.product-table .delete-button:hover, .cart div.product-table .delete-button:hover {
     background: #bd2130; }
 
+.product-management th.filter, .cart th.filter {
+  color: #2193b0;
+  cursor: pointer; }
+
+.product-management p.total-cost, .cart p.total-cost {
+  color: #484949;
+  font-size: 2rem;
+  margin: 1rem auto;
+  width: 90%;
+  text-align: right; }
+  .product-management p.total-cost span, .cart p.total-cost span {
+    font-size: 1.7rem;
+    font-weight: 700; }
+
+.product-management div.date-selection, .cart div.date-selection {
+  margin: 2rem auto;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-flow: row wrap;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+  padding: 1rem; }
+  .product-management div.date-selection h3, .cart div.date-selection h3 {
+    font-size: 1.1rem;
+    margin: 1rem;
+    text-align: center; }
+  .product-management div.date-selection div.date-container, .cart div.date-selection div.date-container {
+    -webkit-box-flex: 1;
+            flex: 1 0 auto;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-flow: row;
+    -webkit-box-pack: center;
+            justify-content: center;
+    -webkit-box-align: end;
+            align-items: flex-end;
+    margin-bottom: 1rem; }
+    .product-management div.date-selection div.date-container > div, .cart div.date-selection div.date-container > div {
+      display: -webkit-box;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+              flex-flow: column;
+      -webkit-box-align: start;
+              align-items: flex-start;
+      margin: 10px 10px 0; }
+  .product-management div.date-selection .react-datepicker-wrapper input, .cart div.date-selection .react-datepicker-wrapper input {
+    width: 100%; }
+  .product-management div.date-selection button.search-button, .cart div.date-selection button.search-button {
+    max-width: 200px;
+    font-size: 1rem;
+    background: #00A86B; }
+    .product-management div.date-selection button.search-button:hover, .cart div.date-selection button.search-button:hover {
+      background: #00754b; }
+
 .cart button.checkout-button {
   background: #00A86B; }
   .cart button.checkout-button:hover {

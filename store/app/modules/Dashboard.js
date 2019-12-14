@@ -6,6 +6,7 @@ import Home from "./Home";
 import ManageProducts from "./ManageProducts/ManageProducts";
 import ManageUsers from "./ManageUsers/ManageUsers";
 import Checkout from "./Checkout/Checkout";
+import SalesReport from "./SalesReport/SalesReport";
 
 // The Dashboard handles the Browser Router and displays the modules based on the URL.
 export default class Dashboard extends Component {
@@ -115,6 +116,9 @@ export default class Dashboard extends Component {
                     )}/>
                     <Route exact path='/users/manage' render={(routeProps) => (
                         <ManageUsers {...routeProps} />
+                    )}/>
+                    <Route exact path='/products/report' render={(routeProps) => (
+                        <SalesReport {...routeProps} />
                     )}/>
                 </Switch>
             </main>

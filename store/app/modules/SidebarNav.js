@@ -30,6 +30,7 @@ export default class SidebarNav extends Component {
                             <div className="admin-controls">
                                 <Link to="/products/manage">Manage Products</Link>
                                 <Link to="/users/manage">Manage Users</Link>
+                                <Link to="/products/report">Sales Report</Link>
                             </div>
                          : ''}
                         <Link to="/store/?logout=1" onClick={() => window.location = '/store/?logout=1'}>Logout</Link>
