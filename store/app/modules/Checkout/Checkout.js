@@ -60,6 +60,13 @@ export default class Checkout extends Component {
                         isLoading: false,
                         cart: orderItems,
                     }));
+
+                    if (orderItems.length > 0) {
+                        this.props.handleCartActive(true);
+                    } else {
+                        this.props.handleCartActive(false);
+                    }
+
                 });
         }
     };
@@ -232,6 +239,7 @@ export default class Checkout extends Component {
                     this.setState(prevState => ({
                         orderSuccess: true,
                     }));
+                    this.props.handleCartActive(false);
                 }
             })
             .catch(error => console.error('Error:', error));

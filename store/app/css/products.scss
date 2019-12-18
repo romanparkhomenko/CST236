@@ -114,7 +114,7 @@ $dark-boulder: #2f2f2f;
     &.product-card {margin: 1rem auto;}
   }
 
-  div.create-product {
+  div.create-product, div.review-product {
     box-shadow: 1px 1px 8px rgba(0,0,0,0.3);
     padding: 1rem;
     flex: 1 0 auto;
@@ -159,6 +159,52 @@ $dark-boulder: #2f2f2f;
       max-width: none;
       &:hover {background: darken(#00A86B, 10%);}
     }
+  }
+
+  div.review-product {
+    div.user-block {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-flow: row wrap;
+      label[for="products_id"], label[for="users_id"] {display: none;}
+      input[name="products_id"], input[name="users_id"] {display: none;}
+      .form-field {
+        width: 100%;
+        max-width: none;
+        display: flex;
+        flex-flow: column;
+        margin: 0 5px 1rem;
+      }
+      .form-field.star-selection {
+        width: 95%;
+        max-width: none;
+      }
+    }
+  }
+
+  div.reviews {
+    margin: 1rem auto;
+    width: 45%;
+    div.review {
+      box-shadow: 1px 1px 8px rgba(0,0,0,0.3);
+      padding: 1rem;
+      flex: 1 0 auto;
+      margin: 1rem auto;
+      h4 {
+        display: flex;
+        font-size: 1rem; font-weight: 700;
+        span {flex: 1 0 auto; text-align: right;}
+      }
+      p {font-size: 0.9rem;}
+    }
+  }
+
+  div.product-summary {
+    width: 100%;
+    margin: 1rem auto;
+    display: flex;
+    flex-flow: row wrap;
   }
 }
 

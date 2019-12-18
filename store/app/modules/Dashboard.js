@@ -56,9 +56,32 @@ export default class Dashboard extends Component {
                         activeCartID = 0;
                     }
                 }
+
                 this.setState(prevState => ({
                     orderID: activeCartID,
                 }));
+
+                if (parseInt(activeCartID) !== 0 && activeCartID !== '') {
+                    this.getCartItems(activeCartID);
+                }
+            });
+    };
+
+    getCartItems = (activeCartID) => {
+        fetch('/store/api/orders/readOrderItems.php?id=' + activeCartID, {
+            method: 'GET',
+        })
+            .then(res => res.json())
+            .then(orderItems => {
+                this.setState(prevState => ({
+                    isLoading: false,
+                    cartItems: orderItems,
+                }));
+                if (orderItems.length > 0) {
+                    this.props.handleCartActive(true);
+                } else {
+                    this.props.handleCartActive(false);
+                }
             });
     };
 
@@ -84,10 +107,10 @@ export default class Dashboard extends Component {
                 this.setState({
                     cart: cart,
                 });
+                this.props.handleCartActive(true);
                 console.info(responseJson);
             })
             .catch(error => console.error('Error:', error));
-
     };
 
     render() {
@@ -97,6 +120,7 @@ export default class Dashboard extends Component {
                     <Route exact path='/' render={(routeProps) => (
                         <Home {...routeProps}
                             user={this.props.user}
+                            productList={this.state.productList}
                         />
                     )}/>
                     <Route exact path='/products' render={(routeProps) => (
@@ -109,6 +133,7 @@ export default class Dashboard extends Component {
                             cart={this.state.orderID}
                             user={this.props.user}
                             productList={this.state.productList}
+                            handleCartActive={this.props.handleCartActive}
                         />
                     )}/>
                     <Route exact path='/products/manage' render={(routeProps) => (

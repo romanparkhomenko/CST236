@@ -22,6 +22,7 @@ class SalesReportService {
                     "name" => $row['name'],
                     "total_quantity" => $row['total_quantity'],
                     "total_price" => $row['total_price'],
+                    "stars" => $row['stars'],
                 );
                 array_push($orders_arr, $order_item);
             }

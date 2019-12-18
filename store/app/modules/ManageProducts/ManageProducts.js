@@ -115,6 +115,7 @@ export default class ManageProducts extends Component {
                             formTitle={"Create Product"}
                             useProductFields={true}
                             useUserInfoFields={false}
+                            useReviewFields={false}
                             methodURL={"/store/api/product/create.php"}
                             handleSuccess={this.handleSuccess}
                         />
@@ -148,6 +149,7 @@ export default class ManageProducts extends Component {
                                     formTitle={"Edit Product"}
                                     useProductFields={true}
                                     useUserInfoFields={false}
+                                    useReviewFields={false}
                                     methodURL={"/store/api/product/edit.php"}
                                     productID={activeProduct.id}
                                     handleSuccess={this.handleSuccess}

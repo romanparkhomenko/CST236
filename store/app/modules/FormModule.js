@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import ImageUploader from 'react-images-upload';
+import StarRatings from 'react-star-ratings';
 
 
 export default class FormModule extends Component {
@@ -13,6 +14,7 @@ export default class FormModule extends Component {
             formSuccessStatus: false,
             formResponse: '',
             pictures: [],
+            rating: 0,
         };
     }
 
@@ -63,6 +65,41 @@ export default class FormModule extends Component {
             type: 'text',
             name: 'imageName',
             placeholder: 'Image Name',
+            value: '',
+        },
+    ];
+
+    reviewFields = [
+        {
+            label: 'Product ID',
+            element: 'input',
+            type: 'number',
+            name: 'products_id',
+            placeholder: 'Product ID',
+            value: this.props.activeProduct ? this.props.activeProduct.id : '',
+        },
+        {
+            label: 'User ID',
+            element: 'input',
+            type: 'number',
+            name: 'users_id',
+            placeholder: 'User ID',
+            value: this.props.activeUser ? this.props.activeUser.id : '',
+        },
+        {
+            label: 'Review',
+            element: 'input',
+            type: 'textarea',
+            name: 'review',
+            placeholder: 'Product Review',
+            value: '',
+        },
+        {
+            label: 'Stars',
+            element: 'input',
+            type: 'text',
+            name: 'stars',
+            placeholder: 'stars',
             value: '',
         },
     ];
@@ -124,12 +161,15 @@ export default class FormModule extends Component {
 
     getAllFields = () => {
         let allFields = [];
-        const {useProductFields, useUserInfoFields} = this.props;
+        const {useProductFields, useUserInfoFields, useReviewFields} = this.props;
         if (useProductFields) {
             allFields = allFields.concat(this.productInfoFields);
         }
         if (useUserInfoFields) {
             allFields = allFields.concat(this.userInfoFields);
+        }
+        if (useReviewFields) {
+            allFields = allFields.concat(this.reviewFields);
         }
         this.setState({
             allFields,
@@ -146,16 +186,28 @@ export default class FormModule extends Component {
         return initialValues;
     };
 
+    changeRating = (newRating, setFieldValue) => {
+        console.info(newRating);
+        setFieldValue('stars', newRating);
+        this.setState({
+            rating: newRating
+        });
+    };
+
     handleFormSubmission = (values, actions) => {
-        let {methodURL} = this.props;
+        let {methodURL, useReviewFields} = this.props;
 
-        if (this.props.productID !== null && this.props.productID !== undefined) {
-            values.id = this.props.productID;
-        }
+        if (!useReviewFields) {
+            if (this.props.productID !== null && this.props.productID !== undefined) {
+                values.id = this.props.productID;
+            }
 
-        if (this.props.userID !== null && this.props.userID !== undefined) {
-            values.id = this.props.userID;
-            values.admin = values.admin === true ? "1" : "0";
+            if (this.props.userID !== null && this.props.userID !== undefined) {
+                values.id = this.props.userID;
+                values.admin = values.admin === true ? "1" : "0";
+            }
+        } else {
+            values.stars = values.stars.toFixed(2).toString();
         }
 
         fetch(methodURL, {
@@ -213,9 +265,9 @@ export default class FormModule extends Component {
         <React.Fragment>
             <div className={blockClass}>
                 {fieldInputs.map(field => (
-                    <React.Fragment>
+                    <React.Fragment key={field.name + field.label}>
                         {field.name !== 'image' ?
-                            <React.Fragment>
+                            <React.Fragment key={field.name + field.label}>
                                 {field.type !== 'select' ?
                                     <div className="form-field" key={field.name + field.label}>
                                         <label htmlFor={field.name}>{field.label}</label>
@@ -271,8 +323,62 @@ export default class FormModule extends Component {
         </React.Fragment>
     );
 
+    renderReviewFieldsBlock = (errors, touched, setFieldValue, fieldInputs, blockTitle, blockClass) => (
+        <React.Fragment>
+            <div className={blockClass}>
+                {fieldInputs.map(field => (
+                    <React.Fragment key={field.name + field.label}>
+                        {field.name !== 'stars' ?
+                            <React.Fragment key={field.name + field.label}>
+                                {field.type === 'textarea' ?
+                                    <div className="form-field" key={field.name + field.label}>
+                                        <label htmlFor={field.name}>{field.label}</label>
+                                        <textarea
+                                            name={field.name}
+                                            rows="5"
+                                            className={this.getFieldClassname(errors[field.name], touched[field.name])}
+                                            placeholder={field.placeholder}
+                                            onChange={(e) => {
+                                                let value = e.target.value;
+                                                setFieldValue('review', value);
+                                            }}
+                                        />
+                                        <ErrorMessage name={field.name} component="div" className="error-message" />
+                                    </div>
+                                    :
+                                    <div className="form-field" key={field.name + field.label}>
+                                        <label htmlFor={field.name}>{field.label}</label>
+                                        <Field
+                                            name={field.name}
+                                            type={field.type}
+                                            className={this.getFieldClassname(errors[field.name], touched[field.name])}
+                                            placeholder={field.placeholder}
+                                        />
+                                        <ErrorMessage name={field.name} component="div" className="error-message" />
+                                    </div>
+                                }
+                            </React.Fragment>
+                            :
+                            <div className="form-field star-selection" key={field.name + field.label}>
+                                <label htmlFor={field.name}>Rate your purchase</label>
+                                <StarRatings
+                                    rating={this.state.rating}
+                                    starRatedColor="rgb(0, 168, 107)"
+                                    changeRating={(rating) => this.changeRating(rating, setFieldValue)}
+                                    numberOfStars={5}
+                                    starDimension={'40px'}
+                                    name='rating'
+                                />
+                            </div>
+                        }
+                    </React.Fragment>
+                ))}
+            </div>
+        </React.Fragment>
+    );
+
     renderFields = (errors, touched, setFieldValue) => {
-        const {useProductFields, useUserInfoFields} = this.props;
+        const {useProductFields, useUserInfoFields, useReviewFields} = this.props;
         return (
             <React.Fragment>
                 {useProductFields
@@ -292,6 +398,16 @@ export default class FormModule extends Component {
                         setFieldValue,
                         this.userInfoFields,
                         'User Information',
+                        'user-block',
+                    )
+                    : ''}
+                {useReviewFields
+                    ? this.renderReviewFieldsBlock(
+                        errors,
+                        touched,
+                        setFieldValue,
+                        this.reviewFields,
+                        'Leave A Review',
                         'user-block',
                     )
                     : ''}

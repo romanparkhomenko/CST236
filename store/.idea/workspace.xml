@@ -41,10 +41,11 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/api/user" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/api/review" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -52,11 +53,11 @@
       <recent name="$PROJECT_DIR$/app/modules/ProductCatalog" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/api/user" />
-      <recent name="$PROJECT_DIR$/api/product" />
-      <recent name="$PROJECT_DIR$/api/orders" />
-      <recent name="$PROJECT_DIR$/app/modules" />
+      <recent name="$PROJECT_DIR$/api/review" />
+      <recent name="$PROJECT_DIR$/api/services" />
+      <recent name="$PROJECT_DIR$/assets/schema" />
       <recent name="$PROJECT_DIR$/api/objects" />
+      <recent name="$PROJECT_DIR$/api/orders" />
     </key>
   </component>
   <component name="RunManager">
@@ -101,7 +102,8 @@
       <workItem from="1574996128027" duration="16958000" />
       <workItem from="1575231441088" duration="6235000" />
       <workItem from="1575669254123" duration="18289000" />
-      <workItem from="1576256352474" duration="26415000" />
+      <workItem from="1576256352474" duration="41801000" />
+      <workItem from="1576654732081" duration="732000" />
     </task>
     <servers />
   </component>
@@ -113,6 +115,10 @@
       <screen x="-1920" y="-157" width="1920" height="1057" />
     </state>
     <state x="-1272" y="181" key="#com.intellij.fileTypes.FileTypeChooser/-1920.-157.1920.1057/-3840.-157.1920.1057/0.23.1440.819@-1920.-157.1920.1057" timestamp="1575671224174" />
+    <state x="449" y="196" key="#com.intellij.tools.ToolEditorDialog" timestamp="1576654672939">
+      <screen x="0" y="23" width="1440" height="819" />
+    </state>
+    <state x="449" y="196" key="#com.intellij.tools.ToolEditorDialog/0.23.1440.819@0.23.1440.819" timestamp="1576654672939" />
     <state width="1878" height="289" key="GridCell.Tab.0.bottom" timestamp="1575832619275">
       <screen x="0" y="23" width="1440" height="819" />
     </state>
@@ -137,18 +143,22 @@
       <screen x="-1920" y="-157" width="1920" height="1057" />
     </state>
     <state x="-1139" y="302" key="NewPhpFileDialog/-1920.-157.1920.1057/-3840.-157.1920.1057/0.23.1440.819@-1920.-157.1920.1057" timestamp="1575671293042" />
+    <state x="229" y="71" key="SettingsEditor" timestamp="1576654722897">
+      <screen x="0" y="23" width="1440" height="819" />
+    </state>
+    <state x="229" y="71" key="SettingsEditor/0.23.1440.819@0.23.1440.819" timestamp="1576654722897" />
     <state x="100" y="123" width="1240" height="619" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1575693572138">
       <screen x="0" y="23" width="1440" height="819" />
     </state>
     <state x="100" y="123" width="1240" height="619" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1440.819@0.23.1440.819" timestamp="1575693572138" />
-    <state x="470" y="248" width="667" height="476" key="find.popup" timestamp="1576632764290">
+    <state x="470" y="248" width="667" height="476" key="find.popup" timestamp="1576652406868">
       <screen x="0" y="23" width="1440" height="819" />
     </state>
     <state x="-1294" y="133" width="667" height="476" key="find.popup/-1920.-157.1920.1057/-3840.-157.1920.1057/0.23.1440.819@-1920.-157.1920.1057" timestamp="1575671449705" />
-    <state x="470" y="248" width="667" height="476" key="find.popup/0.23.1440.819@0.23.1440.819" timestamp="1576632764290" />
-    <state x="385" y="166" width="670" height="676" key="search.everywhere.popup" timestamp="1576636127935">
+    <state x="470" y="248" width="667" height="476" key="find.popup/0.23.1440.819@0.23.1440.819" timestamp="1576652406868" />
+    <state x="385" y="166" width="670" height="676" key="search.everywhere.popup" timestamp="1576688667039">
       <screen x="0" y="23" width="1440" height="819" />
     </state>
-    <state x="385" y="166" width="670" height="676" key="search.everywhere.popup/0.23.1440.819@0.23.1440.819" timestamp="1576636127935" />
+    <state x="385" y="166" width="670" height="676" key="search.everywhere.popup/0.23.1440.819@0.23.1440.819" timestamp="1576688667039" />
   </component>
 </project>

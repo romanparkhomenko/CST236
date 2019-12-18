@@ -36,12 +36,25 @@ class Order {
 
     public function readAllSoldProducts($date1, $date2) {
         $query = "SELECT orderdetails.products_id AS products_id, products.name, SUM(orderdetails.quantity) AS total_quantity, 
-                    SUM(orderdetails.price) AS total_price
-                  FROM ( ( orderdetails 
+                    SUM(orderdetails.price) AS total_price, AVG(reviews.stars) AS stars
+                  FROM ((( orderdetails 
                   INNER JOIN orders ON orders.id = orderdetails.orders_id ) 
-                  INNER JOIN products ON orderdetails.products_id = products.id ) 
+                  INNER JOIN products ON orderdetails.products_id = products.id )
+                  INNER JOIN reviews ON orderdetails.products_id = reviews.products_id ) 
                   WHERE orders.fulfilled = 1 
                   AND orders.created BETWEEN '$date1' AND '$date2' 
+                  GROUP BY orderdetails.products_id 
+                  ORDER BY total_quantity DESC";
+
+        return $result = $this->conn->query($query);
+    }
+
+    public function readAllUserPurchases($users_id) {
+        $query = "SELECT orderdetails.products_id AS products_id, products.name, SUM(orderdetails.quantity) AS total_quantity      
+                  FROM ( ( orderdetails
+                  INNER JOIN orders ON orders.id = orderdetails.orders_id )
+                  INNER JOIN products ON orderdetails.products_id = products.id ) 
+                  WHERE orders.fulfilled = 1 AND orderdetails.review_left = 0 AND orders.users_id = '$users_id'
                   GROUP BY orderdetails.products_id 
                   ORDER BY total_quantity DESC";
 

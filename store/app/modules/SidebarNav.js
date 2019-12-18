@@ -16,6 +16,7 @@ export default class SidebarNav extends Component {
 
     render() {
         const { isAdmin } = this.state;
+        const { cartActive } = this.props;
         return (
             <div className="sidebar">
                 <nav id="sidebar">
@@ -25,7 +26,7 @@ export default class SidebarNav extends Component {
                     <div className="sidebar-links">
                         <Link to="/">Home</Link>
                         <Link to="/products">Products</Link>
-                        <Link to="/cart">Cart</Link>
+                        <Link className={cartActive ? 'cart-active': ''} to="/cart">Cart</Link>
                         {isAdmin ?
                             <div className="admin-controls">
                                 <Link to="/products/manage">Manage Products</Link>

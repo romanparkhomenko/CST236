@@ -12,8 +12,16 @@ class App extends Component {
 
         this.state = {
             user: myApp,
+            cartActive: false,
         };
     }
+
+    // Change Cart button appearance if cart is not empty
+    handleCartActive = (cartState) => {
+        this.setState(prevState => ({
+            cartActive: cartState,
+        }));
+    };
 
     render() {
         const {user} = this.state;
@@ -21,9 +29,11 @@ class App extends Component {
             <React.Fragment>
                 <SidebarNav
                     user={user}
+                    cartActive={this.state.cartActive}
                 />
                 <Dashboard
                     user={user}
+                    handleCartActive={this.handleCartActive}
                 />
             </React.Fragment>
         )

@@ -135,14 +135,14 @@ main.dashboard {
         background: #00754b; }
     .ReactModalPortal .product-card.product-card, .ReactModalPortal .user-card.product-card {
       margin: 1rem auto; }
-  .ReactModalPortal div.create-product {
+  .ReactModalPortal div.create-product, .ReactModalPortal div.review-product {
     box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
     padding: 1rem;
     -webkit-box-flex: 1;
             flex: 1 0 auto;
     margin: 1rem;
     max-width: 500px; }
-    .ReactModalPortal div.create-product .product-block, .ReactModalPortal div.create-product .user-block {
+    .ReactModalPortal div.create-product .product-block, .ReactModalPortal div.create-product .user-block, .ReactModalPortal div.review-product .product-block, .ReactModalPortal div.review-product .user-block {
       display: -webkit-box;
       display: flex;
       -webkit-box-align: center;
@@ -152,11 +152,11 @@ main.dashboard {
       -webkit-box-orient: horizontal;
       -webkit-box-direction: normal;
               flex-flow: row wrap; }
-      .ReactModalPortal div.create-product .product-block label[for="imageName"], .ReactModalPortal div.create-product .user-block label[for="imageName"] {
+      .ReactModalPortal div.create-product .product-block label[for="imageName"], .ReactModalPortal div.create-product .user-block label[for="imageName"], .ReactModalPortal div.review-product .product-block label[for="imageName"], .ReactModalPortal div.review-product .user-block label[for="imageName"] {
         display: none; }
-      .ReactModalPortal div.create-product .product-block input[name="imageName"], .ReactModalPortal div.create-product .user-block input[name="imageName"] {
+      .ReactModalPortal div.create-product .product-block input[name="imageName"], .ReactModalPortal div.create-product .user-block input[name="imageName"], .ReactModalPortal div.review-product .product-block input[name="imageName"], .ReactModalPortal div.review-product .user-block input[name="imageName"] {
         display: none; }
-      .ReactModalPortal div.create-product .product-block .form-field, .ReactModalPortal div.create-product .user-block .form-field {
+      .ReactModalPortal div.create-product .product-block .form-field, .ReactModalPortal div.create-product .user-block .form-field, .ReactModalPortal div.review-product .product-block .form-field, .ReactModalPortal div.review-product .user-block .form-field {
         width: 45%;
         max-width: 350px;
         display: -webkit-box;
@@ -165,25 +165,79 @@ main.dashboard {
         -webkit-box-direction: normal;
                 flex-flow: column;
         margin: 0 5px 1rem; }
-      .ReactModalPortal div.create-product .product-block .form-field.image-uploader, .ReactModalPortal div.create-product .user-block .form-field.image-uploader {
+      .ReactModalPortal div.create-product .product-block .form-field.image-uploader, .ReactModalPortal div.create-product .user-block .form-field.image-uploader, .ReactModalPortal div.review-product .product-block .form-field.image-uploader, .ReactModalPortal div.review-product .user-block .form-field.image-uploader {
         width: 95%;
         max-width: none; }
-      .ReactModalPortal div.create-product .product-block .fileContainer .chooseFileButton, .ReactModalPortal div.create-product .user-block .fileContainer .chooseFileButton {
+      .ReactModalPortal div.create-product .product-block .fileContainer .chooseFileButton, .ReactModalPortal div.create-product .user-block .fileContainer .chooseFileButton, .ReactModalPortal div.review-product .product-block .fileContainer .chooseFileButton, .ReactModalPortal div.review-product .user-block .fileContainer .chooseFileButton {
         max-width: 200px;
         margin: 10px auto; }
-      .ReactModalPortal div.create-product .product-block .fileContainer .uploadPictureContainer, .ReactModalPortal div.create-product .user-block .fileContainer .uploadPictureContainer {
+      .ReactModalPortal div.create-product .product-block .fileContainer .uploadPictureContainer, .ReactModalPortal div.create-product .user-block .fileContainer .uploadPictureContainer, .ReactModalPortal div.review-product .product-block .fileContainer .uploadPictureContainer, .ReactModalPortal div.review-product .user-block .fileContainer .uploadPictureContainer {
         width: 75%; }
-        .ReactModalPortal div.create-product .product-block .fileContainer .uploadPictureContainer img.uploadPicture, .ReactModalPortal div.create-product .user-block .fileContainer .uploadPictureContainer img.uploadPicture {
+        .ReactModalPortal div.create-product .product-block .fileContainer .uploadPictureContainer img.uploadPicture, .ReactModalPortal div.create-product .user-block .fileContainer .uploadPictureContainer img.uploadPicture, .ReactModalPortal div.review-product .product-block .fileContainer .uploadPictureContainer img.uploadPicture, .ReactModalPortal div.review-product .user-block .fileContainer .uploadPictureContainer img.uploadPicture {
           width: auto;
           max-height: 200px;
           max-width: 100%; }
-    .ReactModalPortal div.create-product button.submit-button {
+    .ReactModalPortal div.create-product button.submit-button, .ReactModalPortal div.review-product button.submit-button {
       background: #00A86B;
       color: white;
       width: 100%;
       max-width: none; }
-      .ReactModalPortal div.create-product button.submit-button:hover {
+      .ReactModalPortal div.create-product button.submit-button:hover, .ReactModalPortal div.review-product button.submit-button:hover {
         background: #00754b; }
+  .ReactModalPortal div.review-product div.user-block {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+            justify-content: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-flow: row wrap; }
+    .ReactModalPortal div.review-product div.user-block label[for="products_id"], .ReactModalPortal div.review-product div.user-block label[for="users_id"] {
+      display: none; }
+    .ReactModalPortal div.review-product div.user-block input[name="products_id"], .ReactModalPortal div.review-product div.user-block input[name="users_id"] {
+      display: none; }
+    .ReactModalPortal div.review-product div.user-block .form-field {
+      width: 100%;
+      max-width: none;
+      display: -webkit-box;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+              flex-flow: column;
+      margin: 0 5px 1rem; }
+    .ReactModalPortal div.review-product div.user-block .form-field.star-selection {
+      width: 95%;
+      max-width: none; }
+  .ReactModalPortal div.reviews {
+    margin: 1rem auto;
+    width: 45%; }
+    .ReactModalPortal div.reviews div.review {
+      box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+      padding: 1rem;
+      -webkit-box-flex: 1;
+              flex: 1 0 auto;
+      margin: 1rem auto; }
+      .ReactModalPortal div.reviews div.review h4 {
+        display: -webkit-box;
+        display: flex;
+        font-size: 1rem;
+        font-weight: 700; }
+        .ReactModalPortal div.reviews div.review h4 span {
+          -webkit-box-flex: 1;
+                  flex: 1 0 auto;
+          text-align: right; }
+      .ReactModalPortal div.reviews div.review p {
+        font-size: 0.9rem; }
+  .ReactModalPortal div.product-summary {
+    width: 100%;
+    margin: 1rem auto;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-flow: row wrap; }
 
 .product-list {
   display: -webkit-box;
@@ -481,9 +535,18 @@ main.dashboard {
       color: white;
       font-size: 1.1rem;
       width: 100%;
-      padding: 0.5rem 1rem; }
+      padding: 0.5rem 1rem;
+      -webkit-transition: all 250ms;
+      transition: all 250ms; }
       #sidebar .sidebar-links a:hover {
         background: #2f2f2f;
+        -webkit-transition: all 250ms;
+        transition: all 250ms;
+        text-decoration: none; }
+    #sidebar .sidebar-links a.cart-active {
+      background: #196f85; }
+      #sidebar .sidebar-links a.cart-active:hover {
+        background: #114b5a;
         text-decoration: none; }
     #sidebar .sidebar-links a.btn-danger {
       margin: 1rem auto;

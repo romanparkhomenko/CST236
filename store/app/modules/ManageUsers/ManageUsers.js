@@ -117,6 +117,7 @@ export default class ManageUsers extends Component {
                             formTitle={"Create User"}
                             useProductFields={false}
                             useUserInfoFields={true}
+                            useReviewFields={false}
                             methodURL={"/store/api/user/create.php"}
                             handleSuccess={this.handleSuccess}
                         />
@@ -151,6 +152,7 @@ export default class ManageUsers extends Component {
                                 <FormModule
                                     formTitle={"Edit User"}
                                     useProductFields={false}
+                                    useReviewFields={false}
                                     useUserInfoFields={true}
                                     methodURL={"/store/api/user/edit.php"}
                                     userID={activeUser.id}

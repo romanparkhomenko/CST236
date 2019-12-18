@@ -44,7 +44,12 @@
       font-size: 1.1rem;
       width: 100%;
       padding: 0.5rem 1rem;
-      &:hover {background: $dark-boulder; text-decoration: none;}
+      transition: all 250ms;
+      &:hover {background: $dark-boulder; transition: all 250ms; text-decoration: none;}
+    }
+    a.cart-active {
+      background: #196f85;
+      &:hover {background: darken(#196f85, 10%); text-decoration: none;}
     }
     a.btn-danger {
       margin: 1rem auto;

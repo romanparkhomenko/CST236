@@ -4,6 +4,7 @@ import FormModule from "../FormModule";
 import ReactModal from "react-modal";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import StarRatings from "react-star-ratings";
 
 export default class SalesReport extends Component {
 
@@ -111,6 +112,7 @@ export default class SalesReport extends Component {
                     <th className="filter" onClick={() => this.orderByName()}>Product Name</th>
                     <th className="filter" onClick={() => this.orderByQuantity()}>Total Quantity</th>
                     <th className="filter" onClick={() => this.orderByPrice()}>Total Price</th>
+                    <th className="filter" onClick={() => this.orderByRating()}>Overall Rating</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -126,7 +128,7 @@ export default class SalesReport extends Component {
     };
 
     compare = (a, b) => {
-        const {orderByPrice, orderByName, orderByQuantity, reverse} = this.state;
+        const {orderByPrice, orderByName, orderByQuantity, orderByRating, reverse} = this.state;
 
         let productA;
         let productB;
@@ -140,6 +142,9 @@ export default class SalesReport extends Component {
         } else if (orderByQuantity) {
             productA = parseInt(a.total_quantity);
             productB = parseInt(b.total_quantity);
+        } else if (orderByRating) {
+            productA = parseInt(a.stars);
+            productB = parseInt(b.stars);
         }
 
         let comparison = 0;
@@ -161,6 +166,7 @@ export default class SalesReport extends Component {
             orderByPrice: true,
             orderByQuantity: false,
             orderByName: false,
+            orderByRating: false,
             reverse: !prevState.reverse,
         }));
         this.filterReport();
@@ -171,6 +177,7 @@ export default class SalesReport extends Component {
             orderByPrice: false,
             orderByQuantity: true,
             orderByName: false,
+            orderByRating: false,
             reverse: !prevState.reverse,
         }));
         this.filterReport();
@@ -181,15 +188,27 @@ export default class SalesReport extends Component {
             orderByPrice: false,
             orderByQuantity: false,
             orderByName: true,
+            orderByRating: false,
+            reverse: !prevState.reverse,
+        }));
+        this.filterReport();
+    };
+
+    orderByRating = () => {
+        this.setState(prevState => ({
+            orderByPrice: false,
+            orderByQuantity: false,
+            orderByName: false,
+            orderByRating: true,
             reverse: !prevState.reverse,
         }));
         this.filterReport();
     };
 
     filterReport = () => {
-        const {orderByPrice, orderByName, orderByQuantity, productList} = this.state;
+        const {orderByPrice, orderByName, orderByQuantity, orderByRating, productList} = this.state;
 
-        if (orderByPrice || orderByName || orderByQuantity ) {
+        if (orderByPrice || orderByName || orderByQuantity || orderByRating) {
             this.setState(prevState => ({
                 productList: productList.sort(this.compare),
             }));
@@ -202,6 +221,13 @@ export default class SalesReport extends Component {
             <td>{product.name}</td>
             <td>{product.total_quantity}</td>
             <td>${parseInt(product.total_price).toFixed(2)}</td>
+            <td>
+                <StarRatings
+                    rating={parseInt(product.stars)}
+                    starRatedColor="rgb(0, 168, 107)"
+                    starDimension={"25px"}
+                />
+            </td>
         </tr>;
     };
 
