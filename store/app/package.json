@@ -17,6 +17,7 @@
     "react-dom": "^16.7.0",
     "react-helmet": "^5.2.0",
     "react-hot-loader": "^4.6.3",
+    "react-images-upload": "^1.2.7",
     "react-modal": "^3.11.1",
     "react-native-paper": "^3.2.1",
     "react-router-dom": "^4.3.1",

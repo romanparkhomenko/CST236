@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import ImageUploader from 'react-images-upload';
 
 
 export default class FormModule extends Component {
@@ -11,8 +12,8 @@ export default class FormModule extends Component {
             allFields: [],
             formSuccessStatus: false,
             formResponse: '',
+            pictures: [],
         };
-
     }
 
     productInfoFields = [
@@ -22,7 +23,7 @@ export default class FormModule extends Component {
             type: 'text',
             name: 'name',
             placeholder: 'Name',
-            value: '',
+            value: this.props.activeProduct ? this.props.activeProduct.name : '',
         },
         {
             label: 'Price',
@@ -30,7 +31,7 @@ export default class FormModule extends Component {
             type: 'number',
             name: 'price',
             placeholder: 'Price',
-            value: '',
+            value: this.props.activeProduct ? this.props.activeProduct.price : '',
         },
         {
             label: 'Description',
@@ -38,14 +39,30 @@ export default class FormModule extends Component {
             type: 'textarea',
             name: 'description',
             placeholder: 'Product Description',
-            value: '',
+            value: this.props.activeProduct ? this.props.activeProduct.description : '',
         },
         {
             label: 'Category',
             element: 'input',
-            type: 'number',
+            type: 'select',
             name: 'category_id',
             placeholder: 'Category',
+            value: this.props.activeProduct ? this.props.activeProduct.category_name : '',
+        },
+        {
+            label: 'Image',
+            element: 'input',
+            type: 'file',
+            name: 'image',
+            placeholder: 'image',
+            value: '',
+        },
+        {
+            label: 'Image Name',
+            element: 'input',
+            type: 'text',
+            name: 'imageName',
+            placeholder: 'Image Name',
             value: '',
         },
     ];
@@ -57,7 +74,7 @@ export default class FormModule extends Component {
             type: 'text',
             name: 'username',
             placeholder: 'Username',
-            value: '',
+            value: this.props.activeUser ? this.props.activeUser.username : '',
         },
         {
             label: 'Email',
@@ -65,6 +82,14 @@ export default class FormModule extends Component {
             type: 'email',
             name: 'email',
             placeholder: 'Email Address',
+            value: this.props.activeUser ? this.props.activeUser.email : '',
+        },
+        {
+            label: 'Password',
+            element: 'input',
+            type: 'password',
+            name: 'password',
+            placeholder: 'Password',
             value: '',
         },
         {
@@ -73,7 +98,7 @@ export default class FormModule extends Component {
             type: 'text',
             name: 'firstname',
             placeholder: 'First Name',
-            value: '',
+            value: this.props.activeUser ? this.props.activeUser.firstname : '',
         },
         {
             label: 'Last Name',
@@ -81,7 +106,7 @@ export default class FormModule extends Component {
             type: 'text',
             name: 'lastname',
             placeholder: 'Last Name',
-            value: '',
+            value: this.props.activeUser ? this.props.activeUser.lastname : '',
         },
         {
             label: 'Admin?',
@@ -89,7 +114,7 @@ export default class FormModule extends Component {
             type: 'checkbox',
             name: 'admin',
             placeholder: 'admin',
-            value: '',
+            value: this.props.activeUser ? this.props.activeUser.admin === "1" : '',
         },
     ];
 
@@ -136,7 +161,7 @@ export default class FormModule extends Component {
         fetch(methodURL, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json, application/x-www-form-urlencoded',
+                'Content-Type': 'application/json, application/x-www-form-urlencoded, multipart/form-data',
             },
             body: JSON.stringify(values),
         })
@@ -168,26 +193,85 @@ export default class FormModule extends Component {
         return '';
     };
 
-    renderFieldsBlock = (errors, touched, fieldInputs, blockTitle, blockClass) => (
+    onDrop = (picture, setFieldValue) => {
+        if (picture.length > 0) {
+            const file = picture[0];
+            const reader = new FileReader();
+            setFieldValue("imageName", file.name);
+            reader.onload = function(item) {
+                setFieldValue("image",  item.target.result);
+            };
+
+            reader.readAsDataURL(file);
+            this.setState({
+                pictures: file,
+            });
+        }
+    };
+
+    renderFieldsBlock = (errors, touched, setFieldValue, fieldInputs, blockTitle, blockClass) => (
         <React.Fragment>
             <div className={blockClass}>
                 {fieldInputs.map(field => (
-                    <div className="form-field" key={field.name}>
-                        <label htmlFor={field.name}>{field.label}</label>
-                        <Field
-                            name={field.name}
-                            type={field.type}
-                            className={this.getFieldClassname(errors[field.name], touched[field.name])}
-                            placeholder={field.placeholder}
-                        />
-                        <ErrorMessage name={field.name} component="div" className="error-message" />
-                    </div>
+                    <React.Fragment>
+                        {field.name !== 'image' ?
+                            <React.Fragment>
+                                {field.type !== 'select' ?
+                                    <div className="form-field" key={field.name + field.label}>
+                                        <label htmlFor={field.name}>{field.label}</label>
+                                        <Field
+                                            name={field.name}
+                                            type={field.type}
+                                            className={this.getFieldClassname(errors[field.name], touched[field.name])}
+                                            placeholder={field.placeholder}
+                                            disabled={field.name === 'imageName' ? 'disabled' : ''}
+                                        />
+                                        <ErrorMessage name={field.name} component="div" className="error-message" />
+                                    </div>
+                                    :
+                                    <div className="form-field" key={field.name + field.label}>
+                                        <label htmlFor={field.name}>{field.label}</label>
+                                        <select
+                                            className={this.getFieldClassname(errors[field.name], touched[field.name])}
+                                            placeholder={field.placeholder}
+                                            name={field.name}
+                                            id={field.name}
+                                            onChange={(e) => {
+                                                let value = e.target.value;
+                                                setFieldValue('category_id', value);
+                                            }}
+                                        >
+                                            <option value="">Please select a category</option>
+                                            <option value="1">Consoles</option>
+                                            <option value="2">Accessories</option>
+                                            <option value="3">Games</option>
+                                            <option value="4">Televisions</option>
+                                        </select>
+                                        <ErrorMessage name={field.name} component="div" className="error-message" />
+                                    </div>
+                                }
+                            </React.Fragment>
+                            :
+                            <div className="form-field image-uploader" key={field.name}>
+                                <ImageUploader
+                                    withIcon={false}
+                                    buttonText='Choose images'
+                                    singleImage={true}
+                                    onChange={(picture) => this.onDrop(picture, setFieldValue)}
+                                    withPreview={true}
+                                    name='image'
+                                    imgExtension={['.jpg', '.jpeg', '.png', '.gif']}
+                                    maxFileSize={5242880}
+                                />
+                            </div>
+                        }
+                    </React.Fragment>
                 ))}
             </div>
         </React.Fragment>
     );
 
-    renderFields = (errors, touched) => {
+    renderFields = (errors, touched, setFieldValue) => {
         const {useProductFields, useUserInfoFields} = this.props;
         return (
             <React.Fragment>
@@ -195,6 +279,7 @@ export default class FormModule extends Component {
                     ? this.renderFieldsBlock(
                         errors,
                         touched,
+                        setFieldValue,
                         this.productInfoFields,
                         'Product Information',
                         'product-block',
@@ -204,6 +289,7 @@ export default class FormModule extends Component {
                     ? this.renderFieldsBlock(
                         errors,
                         touched,
+                        setFieldValue,
                         this.userInfoFields,
                         'User Information',
                         'user-block',
@@ -228,7 +314,7 @@ export default class FormModule extends Component {
                         }}
                         render={({ ...formikProps }) => (
                             <Form>
-                                {this.renderFields(formikProps.errors, formikProps.touched)}
+                                {this.renderFields(formikProps.errors, formikProps.touched, formikProps.setFieldValue)}
                                 <div className="form-field">
                                     <button
                                         type="submit"

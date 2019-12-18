@@ -18,8 +18,15 @@ $user = new User($db);
 // Get Posted Data and validate it's not empty.
 $data = json_decode(file_get_contents("php://input"));
 
-$user->id = $data->id;
-$user->admin = $data->admin;
+$isAdmin = 0;
+
+if ($data->admin == "" || $data->admin == "0") {
+    $isAdmin = 0;
+} else {
+    $isAdmin = 1;
+}
+
+$user->admin = $isAdmin;
 $user->username = $data->username;
 $user->email = $data->email;
 $user->password = $data->password;
@@ -27,12 +34,12 @@ $user->firstname = $data->firstname;
 $user->lastname = $data->lastname;
 
 // update the user
-if ($user->update()) {
+if ($user->create()) {
     http_response_code(200);
-    echo json_encode(array("message" => "User was updated."));
+    echo json_encode(array("message" => "User was created."));
 } else {
     http_response_code(503);
-    echo json_encode(array("message" => "Unable to update user."));
+    echo json_encode(array("message" => "Unable to create user."));
 }
 
 ?>

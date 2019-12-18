@@ -137,7 +137,7 @@ export default class ManageProducts extends Component {
                         <div className="product-content">
                             <div className="product-card">
                                 <h3>Original Details</h3>
-                                <img src="https://via.placeholder.com/150" alt="placeholder"/>
+                                <img src={activeProduct.image_name !== '' ? `/store/images/${activeProduct.image_name}` : "https://via.placeholder.com/150"} alt="placeholder"/>
                                 <h4>{activeProduct.name}</h4>
                                 <h2>${parseInt(activeProduct.price).toFixed(2)}</h2>
                                 <p className="description">{activeProduct.description}</p>
@@ -151,6 +151,7 @@ export default class ManageProducts extends Component {
                                     methodURL={"/store/api/product/edit.php"}
                                     productID={activeProduct.id}
                                     handleSuccess={this.handleSuccess}
+                                    activeProduct={activeProduct}
                                 />
                             </div>
                         </div>

@@ -23,6 +23,16 @@ $dark-boulder: #2f2f2f;
 .ReactModalPortal {
   position: relative;
   z-index: 1000;
+  .ReactModal__Overlay.ReactModal__Overlay--after-open {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+  }
+  .ReactModal__Content {
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-end;
+  }
   button {
     -webkit-appearance: none;
     padding: 0.5rem;
@@ -30,11 +40,16 @@ $dark-boulder: #2f2f2f;
     width: 100%;
     font-weight: 700;
     text-transform: uppercase;
-    color: white;
-    border: none;
+    //color: white;
+    //border: none;
     border-radius: 5px;
     transition: all 250ms;
     &:hover {transition: all 250ms;}
+    background: white;
+    float: right;
+    color: $boulder;
+    max-width: 150px;
+    border: 1px solid $boulder;
   }
   .close-button {
     background: white;
@@ -54,11 +69,17 @@ $dark-boulder: #2f2f2f;
     padding: 1rem;
     flex: 1 0 auto;
     margin: 1rem;
-    max-width: 500px;
+    max-width: 400px;
     display: flex;
     flex-flow: column;
     align-items: center;
     //justify-content: center;
+    img {
+      display: block;
+      max-width: 100%;
+      width: auto;
+      max-height: 250px;
+    }
     h4 {
       font-size: 1.1rem; text-align: center;
       margin: 0.5rem auto;
@@ -82,7 +103,17 @@ $dark-boulder: #2f2f2f;
       margin: 1rem 0 0.5rem;
       text-align: center;
     }
+    button.add-to-cart {
+      background: #00A86B;
+      color: white;
+      margin-top: 1rem;
+      width: 95%;
+      max-width: 100%;
+      &:hover {background: darken(#00A86B, 10%);}
+    }
+    &.product-card {margin: 1rem auto;}
   }
+
   div.create-product {
     box-shadow: 1px 1px 8px rgba(0,0,0,0.3);
     padding: 1rem;
@@ -94,6 +125,8 @@ $dark-boulder: #2f2f2f;
       align-items: center;
       justify-content: center;
       flex-flow: row wrap;
+      label[for="imageName"] {display: none;}
+      input[name="imageName"] {display: none;}
       .form-field {
         width: 45%;
         max-width: 350px;
@@ -101,9 +134,29 @@ $dark-boulder: #2f2f2f;
         flex-flow: column;
         margin: 0 5px 1rem;
       }
+      .form-field.image-uploader {
+        width: 95%;
+        max-width: none;
+      }
+      .fileContainer {
+        .chooseFileButton {
+          max-width: 200px; margin: 10px auto;
+        }
+        .uploadPictureContainer {
+          width: 75%;
+          img.uploadPicture {
+            width: auto;
+            max-height: 200px;
+            max-width: 100%;
+          }
+        }
+      }
     }
     button.submit-button {
       background: #00A86B;
+      color: white;
+      width: 100%;
+      max-width: none;
       &:hover {background: darken(#00A86B, 10%);}
     }
   }
@@ -112,6 +165,25 @@ $dark-boulder: #2f2f2f;
 .product-list {
   display: flex;
   flex-flow: row wrap;
+
+  button {
+    -webkit-appearance: none;
+    padding: 0.5rem;
+    text-align: center;
+    width: 100%;
+    font-weight: 700;
+    text-transform: uppercase;
+    //color: white;
+    //border: none;
+    border-radius: 5px;
+    transition: all 250ms;
+    &:hover {transition: all 250ms;}
+    background: white;
+    float: right;
+    color: $boulder;
+    max-width: 150px;
+    border: 1px solid $boulder;
+  }
 
   .product-card {
     cursor: pointer;
@@ -123,9 +195,17 @@ $dark-boulder: #2f2f2f;
     align-items: center;
     //justify-content: center;
     padding: 1rem;
+    img {
+      display: block;
+      max-width: 100%;
+      width: auto;
+      max-height: 150px;
+    }
     h4 {
-      font-size: 1.1rem; text-align: center;
-      margin: 0.5rem auto;
+      font-size: 1.1rem;
+      text-align: center;
+      margin: 1rem auto 0.5rem;
+      font-weight: 900;
     }
     h2 {
       font-size: 1.2rem;
@@ -138,6 +218,7 @@ $dark-boulder: #2f2f2f;
       font-size: 0.9rem;
       color: $boulder;
       margin: 0;
+      text-align: center;
     }
     p.category {
       font-size: 0.9rem;
@@ -146,12 +227,20 @@ $dark-boulder: #2f2f2f;
       margin: 1rem 0 0.5rem;
       text-align: center;
     }
+    button.add-to-cart {
+      background: #00A86B;
+      color: white;
+      margin-top: 1rem;
+      width: 95%;
+      max-width: 100%;
+      &:hover {background: darken(#00A86B, 10%);}
+    }
   }
 
   //.product-modal {z-index: 10000;}
 }
 
-.product-management, .cart {
+.product-management, .user-management, .cart {
   button {
     -webkit-appearance: none;
     padding: 0.5rem;
@@ -170,17 +259,36 @@ $dark-boulder: #2f2f2f;
     padding: 1rem;
     margin-bottom: 1rem;
     max-width: 500px;
-    .product-block {
+    .product-block, .user-block {
       display: flex;
       align-items: center;
       justify-content: center;
       flex-flow: row wrap;
+      label[for="imageName"] {display: none;}
+      input[name="imageName"] {display: none;}
       .form-field {
         width: 45%;
         max-width: 350px;
         display: flex;
         flex-flow: column;
         margin: 0 5px 1rem;
+      }
+      .form-field.image-uploader {
+        width: 95%;
+        max-width: none;
+      }
+      .fileContainer {
+        .chooseFileButton {
+          max-width: 200px; margin: 10px auto;
+        }
+        .uploadPictureContainer {
+          width: 75%;
+          img.uploadPicture {
+            width: auto;
+            max-height: 200px;
+            max-width: 100%;
+          }
+        }
       }
     }
     button.submit-button {

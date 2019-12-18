@@ -112,6 +112,15 @@ export default class ManageUsers extends Component {
             <React.Fragment>
                 <div className="user-management">
                     <h1>Manage Users</h1>
+                    <div className="create-product">
+                        <FormModule
+                            formTitle={"Create User"}
+                            useProductFields={false}
+                            useUserInfoFields={true}
+                            methodURL={"/store/api/user/create.php"}
+                            handleSuccess={this.handleSuccess}
+                        />
+                    </div>
                     <div className="users">
                         {!isLoading ? (
                             <div className="user-table">
@@ -146,6 +155,7 @@ export default class ManageUsers extends Component {
                                     methodURL={"/store/api/user/edit.php"}
                                     userID={activeUser.id}
                                     handleSuccess={this.handleSuccess}
+                                    activeUser={activeUser}
                                 />
                             </div>
                         </div>

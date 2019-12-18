@@ -44,6 +44,18 @@ main.dashboard {
 .ReactModalPortal {
   position: relative;
   z-index: 1000; }
+  .ReactModalPortal .ReactModal__Overlay.ReactModal__Overlay--after-open {
+    background-color: rgba(0, 0, 0, 0.5) !important; }
+  .ReactModalPortal .ReactModal__Content {
+    margin: 0 auto;
+    width: 80%;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-flow: column;
+    -webkit-box-align: end;
+            align-items: flex-end; }
   .ReactModalPortal button {
     -webkit-appearance: none;
     padding: 0.5rem;
@@ -51,11 +63,14 @@ main.dashboard {
     width: 100%;
     font-weight: 700;
     text-transform: uppercase;
-    color: white;
-    border: none;
     border-radius: 5px;
     -webkit-transition: all 250ms;
-    transition: all 250ms; }
+    transition: all 250ms;
+    background: white;
+    float: right;
+    color: #484949;
+    max-width: 150px;
+    border: 1px solid #484949; }
     .ReactModalPortal button:hover {
       -webkit-transition: all 250ms;
       transition: all 250ms; }
@@ -77,7 +92,7 @@ main.dashboard {
     -webkit-box-flex: 1;
             flex: 1 0 auto;
     margin: 1rem;
-    max-width: 500px;
+    max-width: 400px;
     display: -webkit-box;
     display: flex;
     -webkit-box-orient: vertical;
@@ -85,6 +100,11 @@ main.dashboard {
             flex-flow: column;
     -webkit-box-align: center;
             align-items: center; }
+    .ReactModalPortal .product-card img, .ReactModalPortal .user-card img {
+      display: block;
+      max-width: 100%;
+      width: auto;
+      max-height: 250px; }
     .ReactModalPortal .product-card h4, .ReactModalPortal .user-card h4 {
       font-size: 1.1rem;
       text-align: center;
@@ -105,6 +125,16 @@ main.dashboard {
       text-transform: uppercase;
       margin: 1rem 0 0.5rem;
       text-align: center; }
+    .ReactModalPortal .product-card button.add-to-cart, .ReactModalPortal .user-card button.add-to-cart {
+      background: #00A86B;
+      color: white;
+      margin-top: 1rem;
+      width: 95%;
+      max-width: 100%; }
+      .ReactModalPortal .product-card button.add-to-cart:hover, .ReactModalPortal .user-card button.add-to-cart:hover {
+        background: #00754b; }
+    .ReactModalPortal .product-card.product-card, .ReactModalPortal .user-card.product-card {
+      margin: 1rem auto; }
   .ReactModalPortal div.create-product {
     box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
     padding: 1rem;
@@ -122,6 +152,10 @@ main.dashboard {
       -webkit-box-orient: horizontal;
       -webkit-box-direction: normal;
               flex-flow: row wrap; }
+      .ReactModalPortal div.create-product .product-block label[for="imageName"], .ReactModalPortal div.create-product .user-block label[for="imageName"] {
+        display: none; }
+      .ReactModalPortal div.create-product .product-block input[name="imageName"], .ReactModalPortal div.create-product .user-block input[name="imageName"] {
+        display: none; }
       .ReactModalPortal div.create-product .product-block .form-field, .ReactModalPortal div.create-product .user-block .form-field {
         width: 45%;
         max-width: 350px;
@@ -131,8 +165,23 @@ main.dashboard {
         -webkit-box-direction: normal;
                 flex-flow: column;
         margin: 0 5px 1rem; }
+      .ReactModalPortal div.create-product .product-block .form-field.image-uploader, .ReactModalPortal div.create-product .user-block .form-field.image-uploader {
+        width: 95%;
+        max-width: none; }
+      .ReactModalPortal div.create-product .product-block .fileContainer .chooseFileButton, .ReactModalPortal div.create-product .user-block .fileContainer .chooseFileButton {
+        max-width: 200px;
+        margin: 10px auto; }
+      .ReactModalPortal div.create-product .product-block .fileContainer .uploadPictureContainer, .ReactModalPortal div.create-product .user-block .fileContainer .uploadPictureContainer {
+        width: 75%; }
+        .ReactModalPortal div.create-product .product-block .fileContainer .uploadPictureContainer img.uploadPicture, .ReactModalPortal div.create-product .user-block .fileContainer .uploadPictureContainer img.uploadPicture {
+          width: auto;
+          max-height: 200px;
+          max-width: 100%; }
     .ReactModalPortal div.create-product button.submit-button {
-      background: #00A86B; }
+      background: #00A86B;
+      color: white;
+      width: 100%;
+      max-width: none; }
       .ReactModalPortal div.create-product button.submit-button:hover {
         background: #00754b; }
 
@@ -142,6 +191,24 @@ main.dashboard {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
           flex-flow: row wrap; }
+  .product-list button {
+    -webkit-appearance: none;
+    padding: 0.5rem;
+    text-align: center;
+    width: 100%;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 5px;
+    -webkit-transition: all 250ms;
+    transition: all 250ms;
+    background: white;
+    float: right;
+    color: #484949;
+    max-width: 150px;
+    border: 1px solid #484949; }
+    .product-list button:hover {
+      -webkit-transition: all 250ms;
+      transition: all 250ms; }
   .product-list .product-card {
     cursor: pointer;
     width: 100%;
@@ -156,10 +223,16 @@ main.dashboard {
     -webkit-box-align: center;
             align-items: center;
     padding: 1rem; }
+    .product-list .product-card img {
+      display: block;
+      max-width: 100%;
+      width: auto;
+      max-height: 150px; }
     .product-list .product-card h4 {
       font-size: 1.1rem;
       text-align: center;
-      margin: 0.5rem auto; }
+      margin: 1rem auto 0.5rem;
+      font-weight: 900; }
     .product-list .product-card h2 {
       font-size: 1.2rem;
       color: darkgreen;
@@ -169,15 +242,24 @@ main.dashboard {
     .product-list .product-card p.description {
       font-size: 0.9rem;
       color: #484949;
-      margin: 0; }
+      margin: 0;
+      text-align: center; }
     .product-list .product-card p.category {
       font-size: 0.9rem;
       color: #484949;
       text-transform: uppercase;
       margin: 1rem 0 0.5rem;
       text-align: center; }
+    .product-list .product-card button.add-to-cart {
+      background: #00A86B;
+      color: white;
+      margin-top: 1rem;
+      width: 95%;
+      max-width: 100%; }
+      .product-list .product-card button.add-to-cart:hover {
+        background: #00754b; }
 
-.product-management button, .cart button {
+.product-management button, .user-management button, .cart button {
   -webkit-appearance: none;
   padding: 0.5rem;
   text-align: center;
@@ -189,16 +271,16 @@ main.dashboard {
   border-radius: 5px;
   -webkit-transition: all 250ms;
   transition: all 250ms; }
-  .product-management button:hover, .cart button:hover {
+  .product-management button:hover, .user-management button:hover, .cart button:hover {
     -webkit-transition: all 250ms;
     transition: all 250ms; }
 
-.product-management div.create-product, .cart div.create-product {
+.product-management div.create-product, .user-management div.create-product, .cart div.create-product {
   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
   padding: 1rem;
   margin-bottom: 1rem;
   max-width: 500px; }
-  .product-management div.create-product .product-block, .cart div.create-product .product-block {
+  .product-management div.create-product .product-block, .product-management div.create-product .user-block, .user-management div.create-product .product-block, .user-management div.create-product .user-block, .cart div.create-product .product-block, .cart div.create-product .user-block {
     display: -webkit-box;
     display: flex;
     -webkit-box-align: center;
@@ -208,7 +290,11 @@ main.dashboard {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
             flex-flow: row wrap; }
-    .product-management div.create-product .product-block .form-field, .cart div.create-product .product-block .form-field {
+    .product-management div.create-product .product-block label[for="imageName"], .product-management div.create-product .user-block label[for="imageName"], .user-management div.create-product .product-block label[for="imageName"], .user-management div.create-product .user-block label[for="imageName"], .cart div.create-product .product-block label[for="imageName"], .cart div.create-product .user-block label[for="imageName"] {
+      display: none; }
+    .product-management div.create-product .product-block input[name="imageName"], .product-management div.create-product .user-block input[name="imageName"], .user-management div.create-product .product-block input[name="imageName"], .user-management div.create-product .user-block input[name="imageName"], .cart div.create-product .product-block input[name="imageName"], .cart div.create-product .user-block input[name="imageName"] {
+      display: none; }
+    .product-management div.create-product .product-block .form-field, .product-management div.create-product .user-block .form-field, .user-management div.create-product .product-block .form-field, .user-management div.create-product .user-block .form-field, .cart div.create-product .product-block .form-field, .cart div.create-product .user-block .form-field {
       width: 45%;
       max-width: 350px;
       display: -webkit-box;
@@ -217,48 +303,60 @@ main.dashboard {
       -webkit-box-direction: normal;
               flex-flow: column;
       margin: 0 5px 1rem; }
-  .product-management div.create-product button.submit-button, .cart div.create-product button.submit-button {
+    .product-management div.create-product .product-block .form-field.image-uploader, .product-management div.create-product .user-block .form-field.image-uploader, .user-management div.create-product .product-block .form-field.image-uploader, .user-management div.create-product .user-block .form-field.image-uploader, .cart div.create-product .product-block .form-field.image-uploader, .cart div.create-product .user-block .form-field.image-uploader {
+      width: 95%;
+      max-width: none; }
+    .product-management div.create-product .product-block .fileContainer .chooseFileButton, .product-management div.create-product .user-block .fileContainer .chooseFileButton, .user-management div.create-product .product-block .fileContainer .chooseFileButton, .user-management div.create-product .user-block .fileContainer .chooseFileButton, .cart div.create-product .product-block .fileContainer .chooseFileButton, .cart div.create-product .user-block .fileContainer .chooseFileButton {
+      max-width: 200px;
+      margin: 10px auto; }
+    .product-management div.create-product .product-block .fileContainer .uploadPictureContainer, .product-management div.create-product .user-block .fileContainer .uploadPictureContainer, .user-management div.create-product .product-block .fileContainer .uploadPictureContainer, .user-management div.create-product .user-block .fileContainer .uploadPictureContainer, .cart div.create-product .product-block .fileContainer .uploadPictureContainer, .cart div.create-product .user-block .fileContainer .uploadPictureContainer {
+      width: 75%; }
+      .product-management div.create-product .product-block .fileContainer .uploadPictureContainer img.uploadPicture, .product-management div.create-product .user-block .fileContainer .uploadPictureContainer img.uploadPicture, .user-management div.create-product .product-block .fileContainer .uploadPictureContainer img.uploadPicture, .user-management div.create-product .user-block .fileContainer .uploadPictureContainer img.uploadPicture, .cart div.create-product .product-block .fileContainer .uploadPictureContainer img.uploadPicture, .cart div.create-product .user-block .fileContainer .uploadPictureContainer img.uploadPicture {
+        width: auto;
+        max-height: 200px;
+        max-width: 100%; }
+  .product-management div.create-product button.submit-button, .user-management div.create-product button.submit-button, .cart div.create-product button.submit-button {
     background: #00A86B; }
-    .product-management div.create-product button.submit-button:hover, .cart div.create-product button.submit-button:hover {
+    .product-management div.create-product button.submit-button:hover, .user-management div.create-product button.submit-button:hover, .cart div.create-product button.submit-button:hover {
       background: #00754b; }
 
-.product-management div.product-table table, .cart div.product-table table {
+.product-management div.product-table table, .user-management div.product-table table, .cart div.product-table table {
   border-collapse: collapse;
   text-align: left;
   width: 100%; }
 
-.product-management div.product-table table tr, .cart div.product-table table tr {
+.product-management div.product-table table tr, .user-management div.product-table table tr, .cart div.product-table table tr {
   background: white;
   border-bottom: 1px solid; }
 
-.product-management div.product-table table th, .product-management div.product-table table td, .cart div.product-table table th, .cart div.product-table table td {
+.product-management div.product-table table th, .product-management div.product-table table td, .user-management div.product-table table th, .user-management div.product-table table td, .cart div.product-table table th, .cart div.product-table table td {
   padding: 0.5rem 1rem; }
 
-.product-management div.product-table .edit-button, .cart div.product-table .edit-button {
+.product-management div.product-table .edit-button, .user-management div.product-table .edit-button, .cart div.product-table .edit-button {
   background: #2193b0; }
-  .product-management div.product-table .edit-button:hover, .cart div.product-table .edit-button:hover {
+  .product-management div.product-table .edit-button:hover, .user-management div.product-table .edit-button:hover, .cart div.product-table .edit-button:hover {
     background: #196f85; }
 
-.product-management div.product-table .delete-button, .cart div.product-table .delete-button {
+.product-management div.product-table .delete-button, .user-management div.product-table .delete-button, .cart div.product-table .delete-button {
   background: #dc3545; }
-  .product-management div.product-table .delete-button:hover, .cart div.product-table .delete-button:hover {
+  .product-management div.product-table .delete-button:hover, .user-management div.product-table .delete-button:hover, .cart div.product-table .delete-button:hover {
     background: #bd2130; }
 
-.product-management th.filter, .cart th.filter {
+.product-management th.filter, .user-management th.filter, .cart th.filter {
   color: #2193b0;
   cursor: pointer; }
 
-.product-management p.total-cost, .cart p.total-cost {
+.product-management p.total-cost, .user-management p.total-cost, .cart p.total-cost {
   color: #484949;
   font-size: 2rem;
   margin: 1rem auto;
   width: 90%;
   text-align: right; }
-  .product-management p.total-cost span, .cart p.total-cost span {
+  .product-management p.total-cost span, .user-management p.total-cost span, .cart p.total-cost span {
     font-size: 1.7rem;
     font-weight: 700; }
 
-.product-management div.date-selection, .cart div.date-selection {
+.product-management div.date-selection, .user-management div.date-selection, .cart div.date-selection {
   margin: 2rem auto;
   display: -webkit-box;
   display: flex;
@@ -271,11 +369,11 @@ main.dashboard {
           flex-flow: row wrap;
   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
   padding: 1rem; }
-  .product-management div.date-selection h3, .cart div.date-selection h3 {
+  .product-management div.date-selection h3, .user-management div.date-selection h3, .cart div.date-selection h3 {
     font-size: 1.1rem;
     margin: 1rem;
     text-align: center; }
-  .product-management div.date-selection div.date-container, .cart div.date-selection div.date-container {
+  .product-management div.date-selection div.date-container, .user-management div.date-selection div.date-container, .cart div.date-selection div.date-container {
     -webkit-box-flex: 1;
             flex: 1 0 auto;
     display: -webkit-box;
@@ -288,7 +386,7 @@ main.dashboard {
     -webkit-box-align: end;
             align-items: flex-end;
     margin-bottom: 1rem; }
-    .product-management div.date-selection div.date-container > div, .cart div.date-selection div.date-container > div {
+    .product-management div.date-selection div.date-container > div, .user-management div.date-selection div.date-container > div, .cart div.date-selection div.date-container > div {
       display: -webkit-box;
       display: flex;
       -webkit-box-orient: vertical;
@@ -297,13 +395,13 @@ main.dashboard {
       -webkit-box-align: start;
               align-items: flex-start;
       margin: 10px 10px 0; }
-  .product-management div.date-selection .react-datepicker-wrapper input, .cart div.date-selection .react-datepicker-wrapper input {
+  .product-management div.date-selection .react-datepicker-wrapper input, .user-management div.date-selection .react-datepicker-wrapper input, .cart div.date-selection .react-datepicker-wrapper input {
     width: 100%; }
-  .product-management div.date-selection button.search-button, .cart div.date-selection button.search-button {
+  .product-management div.date-selection button.search-button, .user-management div.date-selection button.search-button, .cart div.date-selection button.search-button {
     max-width: 200px;
     font-size: 1rem;
     background: #00A86B; }
-    .product-management div.date-selection button.search-button:hover, .cart div.date-selection button.search-button:hover {
+    .product-management div.date-selection button.search-button:hover, .user-management div.date-selection button.search-button:hover, .cart div.date-selection button.search-button:hover {
       background: #00754b; }
 
 .cart button.checkout-button {

@@ -12,6 +12,7 @@ class Product {
     public $category_id;
     public $category_name;
     public $created;
+    public $imageName;
 
     // Constructor with DB connection
     public function __construct($db){
@@ -20,7 +21,7 @@ class Product {
 
     public function read(){
         $query = "SELECT
-                c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
+                c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created, p.image_name
             FROM
                 products p
                 LEFT JOIN
@@ -34,7 +35,7 @@ class Product {
 
     public function readOne($id){
         $query = "SELECT
-                c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
+                c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created, p.image_name
             FROM
                 products p
                 LEFT JOIN
@@ -56,13 +57,14 @@ class Product {
         $this->description = $row['description'];
         $this->category_id = $row['category_id'];
         $this->category_name = $row['category_name'];
+        $this->imageName = $row['image_name'];
     }
 
     public function search($keyword){
         // Sanitize keywords
         $keyword = htmlspecialchars(strip_tags($keyword));
         $keyword = "%" . $keyword . "%";
-        $query = "SELECT c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
+        $query = "SELECT c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created, p.image_name
             FROM products p
                 LEFT JOIN
                     categories c
@@ -80,7 +82,7 @@ class Product {
 
     public function readPaging($from_record_num, $records_per_page){
         $query = "SELECT
-                c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
+                c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created, p.image_name
             FROM
                 products p
                 LEFT JOIN
@@ -114,7 +116,7 @@ class Product {
         $this->description = htmlspecialchars(strip_tags($this->description));
         $this->category_id = htmlspecialchars(strip_tags($this->category_id));
 
-        $query = "INSERT INTO products (`name`, `price`, `description`, `category_id`, `created`) VALUES ('$this->name', '$this->price', '$this->description', '$this->category_id', now())";
+        $query = "INSERT INTO products (`name`, `price`, `description`, `category_id`, `created`, `image_name`) VALUES ('$this->name', '$this->price', '$this->description', '$this->category_id', now(), '$this->imageName')";
 
         if (mysqli_query($this->conn, $query)) {
             return true;
@@ -131,7 +133,7 @@ class Product {
         $this->description = htmlspecialchars(strip_tags($this->description));
         $this->category_id = htmlspecialchars(strip_tags($this->category_id));
 
-        $query = "UPDATE products SET name='$this->name', price='$this->price', description='$this->description', category_id='$this->category_id', modified=now() WHERE id='$this->id'";
+        $query = "UPDATE products SET name='$this->name', price='$this->price', description='$this->description', category_id='$this->category_id', modified=now(), image_name='$this->imageName' WHERE id='$this->id'";
 
         if (mysqli_query($this->conn, $query)) {
             return true;

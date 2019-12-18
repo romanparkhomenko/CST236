@@ -37,10 +37,29 @@ class User {
         $this->admin = htmlspecialchars(strip_tags($this->admin));
         $this->username = htmlspecialchars(strip_tags($this->username));
         $this->email = htmlspecialchars(strip_tags($this->email));
+        $this->password = md5($this->password);
         $this->firstname = htmlspecialchars(strip_tags($this->firstname));
         $this->lastname = htmlspecialchars(strip_tags($this->lastname));
 
-        $query = "UPDATE users SET admin='$this->admin', username='$this->username', email='$this->email', firstname='$this->firstname', lastname='$this->lastname' WHERE id='$this->id'";
+        $query = "UPDATE users SET admin='$this->admin', username='$this->username', email='$this->email', password='$this->password', firstname='$this->firstname', lastname='$this->lastname' WHERE id='$this->id'";
+
+        if (mysqli_query($this->conn, $query)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    function create() {
+        // Sanitize values
+        $this->admin = htmlspecialchars(strip_tags($this->admin));
+        $this->username = htmlspecialchars(strip_tags($this->username));
+        $this->email = htmlspecialchars(strip_tags($this->email));
+        $this->password = md5($this->password);
+        $this->firstname = htmlspecialchars(strip_tags($this->firstname));
+        $this->lastname = htmlspecialchars(strip_tags($this->lastname));
+
+        $query = "INSERT INTO users (`admin`, `username`, `email`, `password`, `firstname`, `lastname`) VALUES ('$this->admin', '$this->username', '$this->email', '$this->password', '$this->firstname', '$this->lastname')";
 
         if (mysqli_query($this->conn, $query)) {
             return true;

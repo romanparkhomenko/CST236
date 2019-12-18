@@ -26,7 +26,8 @@ if ($result->num_rows > 0) {
             "description" => html_entity_decode($row['description']),
             "price" => $row['price'],
             "category_id" => $row['category_id'],
-            "category_name" => $row['category_name']
+            "category_name" => $row['category_name'],
+            "image_name" => $row['image_name']
         );
 
         array_push($products_arr, $product_item);

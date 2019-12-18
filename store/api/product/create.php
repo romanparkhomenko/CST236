@@ -19,6 +19,26 @@ $product = new Product($db);
 $data = json_decode(file_get_contents("php://input"));
 $isDataValid = !empty($data->name) && !empty($data->price) && !empty($data->description) && !empty($data->category_id);
 
+$target_dir = '../../images/' . $data->imageName;
+$image = $data->image;
+if (preg_match('/^data:image\/(\w+);base64,/', $image, $type)) {
+    $image = substr($image, strpos($image, ',') + 1);
+    $type = strtolower($type[1]); // jpg, png, gif
+
+    if (!in_array($type, [ 'jpg', 'jpeg', 'gif', 'png' ])) {
+        throw new Exception('invalid image type');
+    }
+
+    $image = base64_decode($image);
+
+    if ($data === false) {
+        throw new Exception('base64_decode failed');
+    }
+} else {
+    throw new Exception('did not match data URI with image data');
+}
+
+file_put_contents("{$target_dir}", $image);
 
 // If valid, create product.
 if ($isDataValid) {
@@ -26,6 +46,7 @@ if ($isDataValid) {
     $product->price = $data->price;
     $product->description = $data->description;
     $product->category_id = $data->category_id;
+    $product->imageName = $data->imageName;
 
     // create the product
     if ($product->create()) {
